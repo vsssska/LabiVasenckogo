@@ -1,0 +1,11 @@
+D:\VisualStudioRepos\test\2\Lab_3_TP_WPF\Lab_3_TP_WPF\bin\Debug\Lab_3_TP_WPF.exe.config
+D:\VisualStudioRepos\test\2\Lab_3_TP_WPF\Lab_3_TP_WPF\bin\Debug\Lab_3_TP_WPF.exe
+D:\VisualStudioRepos\test\2\Lab_3_TP_WPF\Lab_3_TP_WPF\bin\Debug\Lab_3_TP_WPF.pdb
+D:\VisualStudioRepos\test\2\Lab_3_TP_WPF\Lab_3_TP_WPF\obj\Debug\Lab_3_TP_WPF.csproj.AssemblyReference.cache
+D:\VisualStudioRepos\test\2\Lab_3_TP_WPF\Lab_3_TP_WPF\obj\Debug\Lab_3_TP_WPF.csproj.SuggestedBindingRedirects.cache
+D:\VisualStudioRepos\test\2\Lab_3_TP_WPF\Lab_3_TP_WPF\obj\Debug\Lab_3_TP_WPF.Form1.resources
+D:\VisualStudioRepos\test\2\Lab_3_TP_WPF\Lab_3_TP_WPF\obj\Debug\Lab_3_TP_WPF.Properties.Resources.resources
+D:\VisualStudioRepos\test\2\Lab_3_TP_WPF\Lab_3_TP_WPF\obj\Debug\Lab_3_TP_WPF.csproj.GenerateResource.cache
+D:\VisualStudioRepos\test\2\Lab_3_TP_WPF\Lab_3_TP_WPF\obj\Debug\Lab_3_TP_WPF.csproj.CoreCompileInputs.cache
+D:\VisualStudioRepos\test\2\Lab_3_TP_WPF\Lab_3_TP_WPF\obj\Debug\Lab_3_TP_WPF.exe
+D:\VisualStudioRepos\test\2\Lab_3_TP_WPF\Lab_3_TP_WPF\obj\Debug\Lab_3_TP_WPF.pdb
