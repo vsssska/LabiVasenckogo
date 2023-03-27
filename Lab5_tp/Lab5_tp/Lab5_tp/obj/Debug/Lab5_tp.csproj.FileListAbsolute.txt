@@ -1,0 +1,11 @@
+D:\VisualStudioRepos\Labs\TechnologyProg\Lab5_tp\Lab5_tp\Lab5_tp\bin\Debug\Lab5_tp.exe.config
+D:\VisualStudioRepos\Labs\TechnologyProg\Lab5_tp\Lab5_tp\Lab5_tp\bin\Debug\Lab5_tp.exe
+D:\VisualStudioRepos\Labs\TechnologyProg\Lab5_tp\Lab5_tp\Lab5_tp\bin\Debug\Lab5_tp.pdb
+D:\VisualStudioRepos\Labs\TechnologyProg\Lab5_tp\Lab5_tp\Lab5_tp\obj\Debug\Lab5_tp.csproj.AssemblyReference.cache
+D:\VisualStudioRepos\Labs\TechnologyProg\Lab5_tp\Lab5_tp\Lab5_tp\obj\Debug\Lab5_tp.csproj.SuggestedBindingRedirects.cache
+D:\VisualStudioRepos\Labs\TechnologyProg\Lab5_tp\Lab5_tp\Lab5_tp\obj\Debug\Lab5_tp.Form1.resources
+D:\VisualStudioRepos\Labs\TechnologyProg\Lab5_tp\Lab5_tp\Lab5_tp\obj\Debug\Lab5_tp.Properties.Resources.resources
+D:\VisualStudioRepos\Labs\TechnologyProg\Lab5_tp\Lab5_tp\Lab5_tp\obj\Debug\Lab5_tp.csproj.GenerateResource.cache
+D:\VisualStudioRepos\Labs\TechnologyProg\Lab5_tp\Lab5_tp\Lab5_tp\obj\Debug\Lab5_tp.csproj.CoreCompileInputs.cache
+D:\VisualStudioRepos\Labs\TechnologyProg\Lab5_tp\Lab5_tp\Lab5_tp\obj\Debug\Lab5_tp.exe
+D:\VisualStudioRepos\Labs\TechnologyProg\Lab5_tp\Lab5_tp\Lab5_tp\obj\Debug\Lab5_tp.pdb
