@@ -35,6 +35,7 @@ namespace lab5
             listBox1.Visible= false;
             if (!Directory.Exists(myPpath))
                 Directory.CreateDirectory(myPpath);
+            button2.Visible= false;
         }
 
         private void errorFunc(string erx, int id, double x, double y)
@@ -210,12 +211,13 @@ namespace lab5
             Size = new Size(400, 500);
         }
 
+        double[,] tempArr;
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string gPath = myPpath + "\\" + listBox1.SelectedItem.ToString();
             string[] gStrings = File.ReadAllLines(gPath);
 
-            double[,] tempArr;
+            
             string[] tempH = gStrings[5].Split('\t');
             tempArr = new double[gStrings.Length - 5, tempH.Length - 1];
             for (int j = 5; j < gStrings.Length; j++)
@@ -238,7 +240,20 @@ namespace lab5
                 }
             }
             Size = new Size(800, 500);
+            button2.Visible = true;
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            dataGridView1.RowCount = tempArr.GetLength(0);
+            dataGridView1.ColumnCount = tempArr.GetLength(1) - 1;
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                for (int j = 0; j < dataGridView1.ColumnCount; j++)
+                {
+                    dataGridView1.Rows[i].Cells[j].Value = tempArr[i, j]/2;
+                }
+            }
         }
     }
 }
