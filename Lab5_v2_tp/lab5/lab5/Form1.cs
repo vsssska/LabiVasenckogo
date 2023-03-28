@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Activities;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,7 +20,10 @@ namespace lab5
         double[,] variable;
         double[,] value;
         double[,,] g;
-        string myPpath = @"D:\myProgramm.log";
+        //string myPpath = @"D:\myProgramm.log";
+        string myPpath = AppDomain.CurrentDomain.BaseDirectory + "res";
+
+        
         public Form1()
         {
             InitializeComponent();
@@ -26,17 +31,20 @@ namespace lab5
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            Size = new Size(200, 500);
+            listBox1.Visible= false;
+            if (!Directory.Exists(myPpath))
+                Directory.CreateDirectory(myPpath);
         }
 
 
 
-        private void myprogram(int Gcount)
+        private string myprogram(int Gcount)
         {
-            
-            File.Delete(myPpath);
 
-            FileStream file = new FileStream(myPpath, FileMode.Create);
+            string newPrlog = myPpath + "\\myPr" + DateTime.Now.ToString("dd_MM_yy HH_mm_ss") + ".log";
+
+            FileStream file = new FileStream(newPrlog, FileMode.Create);
             file.Seek(0, SeekOrigin.End);
             StreamWriter streamWriter= new StreamWriter(file);
 
@@ -47,18 +55,18 @@ namespace lab5
                 "Результаты расчетов содержатся в:  ");
             for (int j = 0; j < Gcount; j++)
                 streamWriter.WriteLine($"G{j}.dat");
+            
             streamWriter.Close();
             file.Close();
-
+            return newPrlog;
         }
 
 
-        private void datReader(int ic)
+        private void datReader(int ic, string newPrlog)
         {
             string[] path;
-            path = File.ReadAllLines(myPpath);
+            path = File.ReadAllLines(newPrlog);
 
-            //g = new double[,,path.Length-5];
             double[,] tempArr;
             for(int i=5; i < path.Length; i++)
             {
@@ -71,7 +79,7 @@ namespace lab5
                 {
                     string[] temp = gStrings[j].Split('\t');
                     
-                    for(int k=1; k<temp.Length; k++)
+                    for(int k=1; k<temp.Length-1; k++)
                     {
                         tempArr[j-5, k-1] = Convert.ToDouble(temp[k]);
                     }
@@ -79,11 +87,17 @@ namespace lab5
 
             }
 
+            for(int i=5; i<path.Length; i++)
+            {
+                listBox1.Items.Add(path[i]);
+            }
+            listBox1.Visible= true;
         }
         private void gWriter(int gID, int xi, int yi, double[,] val)
         {
-            string path = @"D:\g"+gID.ToString()+".txt";
-            File.Delete(path);
+            string path = myPpath + $"\\G{gID}.dat";
+            if(File.Exists(path))
+                File.Delete(path);
 
             FileStream streamwriter = new FileStream(path, FileMode.Create);
             streamwriter.Seek(0, SeekOrigin.End);
@@ -150,8 +164,8 @@ namespace lab5
                 gWriter(i, endX, endY, value);
                 
             }
-            myprogram(data.GetLength(0));
-            datReader(data.GetLength(0));
+            string nTemp = myprogram(data.GetLength(0));
+            datReader(data.GetLength(0), nTemp);
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -173,6 +187,38 @@ namespace lab5
             }
 
             func(variable);
+            Size = new Size(400, 500);
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string gPath = myPpath + "\\" + listBox1.SelectedItem.ToString();
+            string[] gStrings = File.ReadAllLines(gPath);
+
+            double[,] tempArr;
+            string[] tempH = gStrings[5].Split('\t');
+            tempArr = new double[gStrings.Length - 5, tempH.Length - 1];
+            for (int j = 5; j < gStrings.Length; j++)
+            {
+                string[] temp = gStrings[j].Split('\t');
+
+                for (int k = 1; k < temp.Length - 1; k++)
+                {
+                    tempArr[j - 5, k - 1] = Convert.ToDouble(temp[k]);
+                }
+            }
+
+            dataGridView1.RowCount= tempArr.GetLength(0);
+            dataGridView1.ColumnCount= tempArr.GetLength(1)-1;
+            for(int i=0; i < dataGridView1.RowCount; i++)
+            {
+                for(int j=0; j< dataGridView1.ColumnCount; j++)
+                {
+                    dataGridView1.Rows[i].Cells[j].Value = tempArr[i, j];
+                }
+            }
+            Size = new Size(800, 500);
+
         }
     }
 }
