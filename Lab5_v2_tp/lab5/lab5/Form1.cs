@@ -37,7 +37,22 @@ namespace lab5
                 Directory.CreateDirectory(myPpath);
         }
 
+        private void errorFunc(string erx, int id, double x, double y)
+        {
+            MessageBox.Show(erx);
+            string newPrlog = myPpath + "\\myError" + DateTime.Now.ToString("dd_MM_yy HH_mm_ss") + ".log";
 
+            FileStream file = new FileStream(newPrlog, FileMode.Create);
+            file.Seek(0, SeekOrigin.End);
+            StreamWriter streamWriter = new StreamWriter(file);
+
+            streamWriter.WriteLine($"Имя файлы данных: G{id}.log" + Environment.NewLine +
+                "Рассчитываемая ф-ция: cos(x/y)^(1/2)" + Environment.NewLine +
+                $"Аргументы: x= {x} y={y}");
+
+            streamWriter.Close();
+            file.Close();
+        }
 
         private string myprogram(int Gcount)
         {
@@ -51,7 +66,7 @@ namespace lab5
             streamWriter.WriteLine($"Название программы: {System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName.Split('\\').Last()}" + Environment.NewLine +
                 "Номер варианта: 50" + Environment.NewLine +
                 $"{DateTime.Now}" + Environment.NewLine +
-                "Рассчитываемая ф-ция: cos(x/y)^-2" + Environment.NewLine +
+                "Рассчитываемая ф-ция: cos(x/y)^(1/2)" + Environment.NewLine +
                 "Результаты расчетов содержатся в:  ");
             for (int j = 0; j < Gcount; j++)
                 streamWriter.WriteLine($"G{j}.dat");
@@ -60,7 +75,6 @@ namespace lab5
             file.Close();
             return newPrlog;
         }
-
 
         private void datReader(int ic, string newPrlog)
         {
@@ -150,15 +164,21 @@ namespace lab5
                 int endX = Convert.ToInt32(x0 + xN * xh);
                 value = new double[endY, endX];
 
-                
-                for(int j=0; j<endY; j++)
+                try
                 {
-                    for(int k=0; k<endX; k++)
+                    for (int j = 0; j < endY; j++)
                     {
-                        value[j, k] = calc(x0, y0);
-                        x0 += xh;
+                        for (int k = 0; k < endX; k++)
+                        {
+                            value[j, k] = calc(x0, y0);
+                            x0 += xh;
+                        }
+                        y0 += yh;
                     }
-                    y0+= yh;
+                }
+                catch(Exception ex)
+                {
+                    errorFunc(ex.ToString(), i, x0, y0);
                 }
 
                 gWriter(i, endX, endY, value);
