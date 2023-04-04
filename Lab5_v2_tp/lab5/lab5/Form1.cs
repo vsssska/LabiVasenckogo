@@ -19,8 +19,7 @@ namespace lab5
         string[] strings;
         double[,] variable;
         double[,] value;
-        double[,,] g;
-        //string myPpath = @"D:\myProgramm.log";
+        string gPathGlobal;
         string myPpath = AppDomain.CurrentDomain.BaseDirectory + "res";
 
         
@@ -83,30 +82,37 @@ namespace lab5
             path = File.ReadAllLines(newPrlog);
 
             double[,] tempArr;
-            for(int i=5; i < path.Length; i++)
+            try
             {
-                string gPath = @"D:\" + path[i];
-                string[] gStrings = File.ReadAllLines(gPath);
-
-                string[] tempH = gStrings[5].Split('\t');
-                tempArr = new double[gStrings.Length - 5, tempH.Length-1];
-                for (int j=5; j<gStrings.Length; j++)
+                for (int i = 5; i < path.Length; i++)
                 {
-                    string[] temp = gStrings[j].Split('\t');
-                    
-                    for(int k=1; k<temp.Length-1; k++)
+                    string gPath = myPpath + "\\" + path[i];
+                    string[] gStrings = File.ReadAllLines(gPath);
+
+                    string[] tempH = gStrings[5].Split('\t');
+                    tempArr = new double[gStrings.Length - 5, tempH.Length - 1];
+                    for (int j = 5; j < gStrings.Length; j++)
                     {
-                        tempArr[j-5, k-1] = Convert.ToDouble(temp[k]);
+                        string[] temp = gStrings[j].Split('\t');
+
+                        for (int k = 1; k < temp.Length - 1; k++)
+                        {
+                            tempArr[j - 5, k - 1] = Convert.ToDouble(temp[k]);
+                        }
                     }
+
                 }
 
+                for (int i = 5; i < path.Length; i++)
+                {
+                    listBox1.Items.Add(path[i]);
+                }
+                listBox1.Visible = true;
             }
-
-            for(int i=5; i<path.Length; i++)
+            catch (Exception ex)
             {
-                listBox1.Items.Add(path[i]);
+                MessageBox.Show(ex.ToString());
             }
-            listBox1.Visible= true;
         }
         private void gWriter(int gID, int xi, int yi, double[,] val)
         {
@@ -150,41 +156,49 @@ namespace lab5
         Func<double, double, double> calc = (x, y) => Math.Sqrt(Math.Cos(x / y));
         public void func(double[,] data)
         {
-            for (int i=0; i<data.GetLength(0); i++)
+            try
             {
-                
-                double x0 = data[i, 0];
-                double xN = data[i, 1];
-                double xh = data[i, 2];
-
-                double y0 = data[i, 3];
-                double ye = data[i, 4];
-                double yh = data[i, 5];
-
-                int endY = Convert.ToInt32(Math.Abs(ye - y0) / yh);
-                int endX = Convert.ToInt32(x0 + xN * xh);
-                value = new double[endY, endX];
-
-                try
+                for (int i = 1; i < data.GetLength(0); i++)
                 {
-                    for (int j = 0; j < endY; j++)
+
+                    double x0 = data[i, 0];
+                    double xN = data[i, 1];
+                    double xh = data[i, 2];
+
+                    double y0 = data[i, 3];
+                    double ye = data[i, 4];
+                    double yh = data[i, 5];
+
+                    int endY = Convert.ToInt32(Math.Abs(ye - y0) / yh);
+                    int endX = Convert.ToInt32(x0 + xN * xh);
+                    value = new double[endY, endX];
+
+                    try
                     {
-                        for (int k = 0; k < endX; k++)
+                        for (int j = 0; j < endY; j++)
                         {
-                            value[j, k] = calc(x0, y0);
-                            x0 += xh;
+                            for (int k = 0; k < endX; k++)
+                            {
+                                value[j, k] = calc(x0, y0);
+                                x0 += xh;
+                            }
+                            y0 += yh;
                         }
-                        y0 += yh;
                     }
-                }
-                catch(Exception ex)
-                {
-                    errorFunc(ex.ToString(), i, x0, y0);
-                }
+                    catch (Exception ex)
+                    {
+                        errorFunc(ex.ToString(), i, x0, y0);
+                    }
 
-                gWriter(i, endX, endY, value);
-                
+                    gWriter(i, endX, endY, value);
+
+                }
             }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+            
             string nTemp = myprogram(data.GetLength(0));
             datReader(data.GetLength(0), nTemp);
         }
@@ -197,24 +211,34 @@ namespace lab5
             }
             strings = File.ReadAllLines(data_path);
 
-            variable = new double[strings.Length, 6];
-            for(int i = 0; i < strings.Length; i++)
+            try
             {
-                string[] tempvar = strings[i].Split(' ');
-                for(int j=0; j<variable.GetLength(1); j++) 
+                listBox1.Items.Clear();
+                variable = new double[strings.Length - 1, 6];
+                for (int i = 0; i < strings.Length - 1; i++)
                 {
-                    variable[i, j] = Convert.ToDouble(tempvar[j]);
+                    string[] tempvar = strings[i + 1].Split(' ');
+                    for (int j = 0; j < variable.GetLength(1); j++)
+                    {
+                        variable[i, j] = Convert.ToDouble(tempvar[j]);
+                    }
                 }
-            }
 
-            func(variable);
-            Size = new Size(400, 500);
+                func(variable);
+                Size = new Size(400, 500);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            
         }
 
         double[,] tempArr;
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string gPath = myPpath + "\\" + listBox1.SelectedItem.ToString();
+            gPathGlobal = gPath;
             string[] gStrings = File.ReadAllLines(gPath);
 
             
@@ -239,7 +263,7 @@ namespace lab5
                     dataGridView1.Rows[i].Cells[j].Value = tempArr[i, j];
                 }
             }
-            Size = new Size(800, 500);
+            Size = new Size(800, 600);
             button2.Visible = true;
         }
 
@@ -253,6 +277,59 @@ namespace lab5
                 {
                     dataGridView1.Rows[i].Cells[j].Value = tempArr[i, j]/2;
                 }
+            }
+        }
+
+
+
+
+        private double[,] strParcer(string[] gStrings)
+        {
+            string[] tempH = gStrings[5].Split('\t');
+            tempArr = new double[gStrings.Length - 5, tempH.Length - 1];
+            for (int j = 5; j < gStrings.Length; j++)
+            {
+                string[] temp = gStrings[j].Split('\t');
+
+                for (int k = 1; k < temp.Length - 1; k++)
+                {
+                    tempArr[j - 5, k - 1] = Convert.ToDouble(temp[k]);
+                }
+            }
+            return tempArr;
+        }
+
+        private string res_finder(double[,] arr) 
+        {
+            string _gtemp = Path.GetFileName(gPathGlobal).Replace(".dat", "");
+            _gtemp = _gtemp.Replace("G", "");
+            int number = Convert.ToInt32(_gtemp);
+            int x = Convert.ToInt32(textBox2.Text);
+            int x0 = Convert.ToInt32(variable[number, 3]);
+            int y = Convert.ToInt32(textBox1.Text);
+            int y0 = Convert.ToInt32(variable[number, 0]);
+            
+            return arr[x - x0, y - y0].ToString();
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                double[,] arr;
+                using (FileStream fileStream = new FileStream(gPathGlobal, FileMode.Open, FileAccess.Read))
+                {
+                    fileStream.Seek(0, SeekOrigin.Begin);
+                    string[] file_strings = File.ReadAllLines(fileStream.Name);
+                    arr = strParcer(file_strings);
+                    
+                }
+
+                label3.Text = res_finder(arr);
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
     }
