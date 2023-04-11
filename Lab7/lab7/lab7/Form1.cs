@@ -50,40 +50,43 @@ namespace lab7
                 textBox1.Select(0, (ex.Message.ToString()).Length);
             }
 
-            if(listBoxSecOp.SelectedItems.Count != -1)
+            if (listBoxSecOp.SelectedItems.Count != -1)
             {
                 try
                 {
                     s_oper = Convert.ToDouble(listBoxSecOp.SelectedItem);
+                    try
+                    {
+                        if (comboBox1.SelectedIndex == 0)
+                            listBoxRes.Items.Add($"{f_oper} < {s_oper} = {f_oper < s_oper}");
+                        if (comboBox1.SelectedIndex == 1)
+                            listBoxRes.Items.Add($"{f_oper} > {s_oper} = {f_oper > s_oper}");
+                        if (comboBox1.SelectedIndex == 2)
+                            listBoxRes.Items.Add($"{f_oper} = {s_oper} = {f_oper == s_oper}");
+                        if (comboBox1.SelectedIndex == 3)
+                            listBoxRes.Items.Add($"{f_oper} <= {s_oper} = {f_oper <= s_oper}");
+                        if (comboBox1.SelectedIndex == 4)
+                            listBoxRes.Items.Add($"{f_oper} >= {s_oper} = {f_oper >= s_oper}");
+                        if (comboBox1.SelectedIndex == 5)
+                            listBoxRes.Items.Add($"{f_oper} <> {s_oper} = {f_oper != s_oper}");
+                        if (comboBox1.SelectedIndex == -1)
+                            MessageBox.Show("Нужно выбрать знак в comboBox!");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
                 }
                 catch
                 {
 
                 }
             }
+            else
+                MessageBox.Show("Нужно выбрать эл-т в ЛистБоксе!");
                 
 
-            try
-            {
-                if(comboBox1.SelectedIndex == 0)
-                    listBoxRes.Items.Add($"{f_oper} < {s_oper} = {f_oper < s_oper}");
-                if (comboBox1.SelectedIndex == 1)
-                    listBoxRes.Items.Add($"{f_oper} > {s_oper} = {f_oper > s_oper}");
-                if (comboBox1.SelectedIndex == 2)
-                    listBoxRes.Items.Add($"{f_oper} = {s_oper} = {f_oper == s_oper}");
-                if (comboBox1.SelectedIndex == 3)
-                    listBoxRes.Items.Add($"{f_oper} <= {s_oper} = {f_oper <= s_oper}");
-                if (comboBox1.SelectedIndex == 4)
-                    listBoxRes.Items.Add($"{f_oper} >= {s_oper} = {f_oper >= s_oper}");
-                if (comboBox1.SelectedIndex == 5)
-                    listBoxRes.Items.Add($"{f_oper} <> {s_oper} = {f_oper != s_oper}");
-                if (comboBox1.SelectedIndex == -1)
-                    MessageBox.Show("Нужно выбрать знак в comboBox!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            
         }
 
         private void buttonClear2_Click(object sender, EventArgs e)
