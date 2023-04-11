@@ -83,28 +83,32 @@ namespace lab7
 
         private void buttonCalc_Click(object sender, EventArgs e)
         {
-            string[] _temps = listBoxRes.SelectedItem.ToString().Split(' ');
-            textBox1.Text= _temps[0];
-            if (_temps[1] == "<")
-                comboBox1.SelectedIndex = 0;
-            else if (_temps[1] == ">")
-                comboBox1.SelectedIndex = 1;
-            else if (_temps[1] == "=")
-                comboBox1.SelectedIndex = 2;
-            else if (_temps[1] == "<=")
-                comboBox1.SelectedIndex = 3;
-            else if (_temps[1] == ">=")
-                comboBox1.SelectedIndex = 4;
-            else if (_temps[1] == "<>")
-                comboBox1.SelectedIndex = 5;
-            for(int i = 0; i < 5; i++)
+            if(listBoxRes.SelectedIndex != -1)
             {
-                if (Convert.ToDouble(_temps[2]) == Convert.ToDouble(listBoxSecOp.Items[i]))
+                string[] _temps = listBoxRes.SelectedItem.ToString().Split(' ');
+                textBox1.Text = _temps[0];
+                if (_temps[1] == "<")
+                    comboBox1.SelectedIndex = 0;
+                else if (_temps[1] == ">")
+                    comboBox1.SelectedIndex = 1;
+                else if (_temps[1] == "=")
+                    comboBox1.SelectedIndex = 2;
+                else if (_temps[1] == "<=")
+                    comboBox1.SelectedIndex = 3;
+                else if (_temps[1] == ">=")
+                    comboBox1.SelectedIndex = 4;
+                else if (_temps[1] == "<>")
+                    comboBox1.SelectedIndex = 5;
+                for (int i = 0; i < 5; i++)
                 {
-                    listBoxSecOp.SelectedIndex = i;
-                    break;
+                    if (Convert.ToDouble(_temps[2]) == Convert.ToDouble(listBoxSecOp.Items[i]))
+                    {
+                        listBoxSecOp.SelectedIndex = i;
+                        break;
+                    }
                 }
             }
+            
 
         }
 
