@@ -36,57 +36,67 @@ namespace lab7
 
         private void buttonPerf_Click(object sender, EventArgs e)
         {
-            double f_oper=0;
-            double s_oper=0;
-            try
+            if (textBox1.Text.Length > 0)
             {
-                f_oper = Convert.ToDouble(textBox1.Text);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                textBox1.Text = ex.Message;
-                textBox1.Focus();
-                textBox1.Select(0, (ex.Message.ToString()).Length);
-            }
-
-            if (listBoxSecOp.SelectedItems.Count != -1)
-            {
+                double f_oper = 0;
+                double s_oper = 0;
                 try
                 {
-                    s_oper = Convert.ToDouble(listBoxSecOp.SelectedItem);
+                    f_oper = Convert.ToDouble(textBox1.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    textBox1.Text = ex.Message;
+                    textBox1.Focus();
+                    textBox1.Select(0, (ex.Message.ToString()).Length);
+                }
+
+                if (listBoxSecOp.SelectedItems.Count != -1)
+                {
                     try
                     {
-                        if (comboBox1.SelectedIndex == 0)
-                            listBoxRes.Items.Add($"{f_oper} < {s_oper} = {f_oper < s_oper}");
-                        if (comboBox1.SelectedIndex == 1)
-                            listBoxRes.Items.Add($"{f_oper} > {s_oper} = {f_oper > s_oper}");
-                        if (comboBox1.SelectedIndex == 2)
-                            listBoxRes.Items.Add($"{f_oper} = {s_oper} = {f_oper == s_oper}");
-                        if (comboBox1.SelectedIndex == 3)
-                            listBoxRes.Items.Add($"{f_oper} <= {s_oper} = {f_oper <= s_oper}");
-                        if (comboBox1.SelectedIndex == 4)
-                            listBoxRes.Items.Add($"{f_oper} >= {s_oper} = {f_oper >= s_oper}");
-                        if (comboBox1.SelectedIndex == 5)
-                            listBoxRes.Items.Add($"{f_oper} <> {s_oper} = {f_oper != s_oper}");
-                        if (comboBox1.SelectedIndex == -1)
-                            MessageBox.Show("Нужно выбрать знак в comboBox!");
+                        s_oper = Convert.ToDouble(listBoxSecOp.SelectedItem);
+                        try
+                        {
+                            if (comboBox1.SelectedIndex == 0)
+                                listBoxRes.Items.Add($"{f_oper} < {s_oper} = {f_oper < s_oper}");
+                            if (comboBox1.SelectedIndex == 1)
+                                listBoxRes.Items.Add($"{f_oper} > {s_oper} = {f_oper > s_oper}");
+                            if (comboBox1.SelectedIndex == 2)
+                                listBoxRes.Items.Add($"{f_oper} = {s_oper} = {f_oper == s_oper}");
+                            if (comboBox1.SelectedIndex == 3)
+                                listBoxRes.Items.Add($"{f_oper} <= {s_oper} = {f_oper <= s_oper}");
+                            if (comboBox1.SelectedIndex == 4)
+                                listBoxRes.Items.Add($"{f_oper} >= {s_oper} = {f_oper >= s_oper}");
+                            if (comboBox1.SelectedIndex == 5)
+                                listBoxRes.Items.Add($"{f_oper} <> {s_oper} = {f_oper != s_oper}");
+                            if (comboBox1.SelectedIndex == -1)
+                                MessageBox.Show("Нужно выбрать знак в comboBox!");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString());
+                        }
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        MessageBox.Show(ex.ToString());
+
                     }
                 }
-                catch
-                {
+                else
+                    MessageBox.Show("Нужно выбрать эл-т в ЛистБоксе!");
 
-                }
             }
             else
-                MessageBox.Show("Нужно выбрать эл-т в ЛистБоксе!");
+            {
+                MessageBox.Show("Введите значение в ТекстБокс");
+                textBox1.Focus();
+            }
                 
 
-            
+
+
         }
 
         private void buttonClear2_Click(object sender, EventArgs e)
