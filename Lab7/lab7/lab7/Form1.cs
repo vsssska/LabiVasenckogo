@@ -26,10 +26,6 @@ namespace lab7
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            for(int i = 0; i < 5; i++)
-            {
-                listBoxSecOp.Items.Add((i*10).ToString());
-            }
             comboBox1.Items.Add("<"); //0 index
             comboBox1.Items.Add(">"); //1 index
             comboBox1.Items.Add("="); //2 index
@@ -49,11 +45,23 @@ namespace lab7
             catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                textBox1.Clear();
+                textBox1.Text = ex.Message;
+                textBox1.Focus();
+                textBox1.Select(0, (ex.Message.ToString()).Length);
             }
 
-            if(listBoxSecOp.SelectedItems.Count > 0)
-                s_oper = Convert.ToDouble(listBoxSecOp.SelectedItem);
+            if(listBoxSecOp.SelectedItems.Count != -1)
+            {
+                try
+                {
+                    s_oper = Convert.ToDouble(listBoxSecOp.SelectedItem);
+                }
+                catch
+                {
+
+                }
+            }
+                
 
             try
             {
@@ -69,6 +77,8 @@ namespace lab7
                     listBoxRes.Items.Add($"{f_oper} >= {s_oper} = {f_oper >= s_oper}");
                 if (comboBox1.SelectedIndex == 5)
                     listBoxRes.Items.Add($"{f_oper} <> {s_oper} = {f_oper != s_oper}");
+                if (comboBox1.SelectedIndex == -1)
+                    MessageBox.Show("Нужно выбрать знак в comboBox!");
             }
             catch (Exception ex)
             {
@@ -99,14 +109,19 @@ namespace lab7
                     comboBox1.SelectedIndex = 4;
                 else if (_temps[1] == "<>")
                     comboBox1.SelectedIndex = 5;
-                for (int i = 0; i < 5; i++)
+
+                bool flag = false;
+                for (int i = 0; i < listBoxSecOp.Items.Count; i++)
                 {
                     if (Convert.ToDouble(_temps[2]) == Convert.ToDouble(listBoxSecOp.Items[i]))
                     {
                         listBoxSecOp.SelectedIndex = i;
+                        flag = true;
                         break;
                     }
                 }
+                if(!flag)
+                    listBoxSecOp.Items.Add(_temps[2]);
             }
             
 
@@ -116,12 +131,46 @@ namespace lab7
         {
             textBox1.Text = string.Empty;
             comboBox1.SelectedIndex = (-1);
-            listBoxSecOp.SelectedIndex = (-1);
+            listBoxSecOp.Items.Clear();
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            if(textBox1.Text.Length > 0)
+            {
+                try
+                {
+                    double temp = Convert.ToDouble(textBox1.Text);
+                    bool flag = false;
+                    for(int i = 0;i < listBoxSecOp.Items.Count;i++)
+                    {
+                        if (Convert.ToDouble(listBoxSecOp.Items[i]) == temp)
+                        {
+                            MessageBox.Show("Такой эл-нт уже существует");
+                            flag = true;
+                        }
+                    }
+                    if(!flag)
+                        listBoxSecOp.Items.Add(textBox1.Text);
+                }
+                catch(Exception ex)
+                {
+                    textBox1.Text = ex.Message;
+                    textBox1.Focus();
+                    textBox1.Select(0, (ex.Message.ToString()).Length);
+                }
+            }
+        }
+
+        private void buttonDell_Click(object sender, EventArgs e)
+        {
+            if(listBoxSecOp.SelectedIndex != -1)
+                listBoxSecOp.Items.Remove(listBoxSecOp.SelectedItem);
         }
     }
 }

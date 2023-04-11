@@ -84,6 +84,7 @@
             this.buttonAdd.TabIndex = 4;
             this.buttonAdd.Text = "Добавить";
             this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // buttonDell
             // 
@@ -93,6 +94,7 @@
             this.buttonDell.TabIndex = 5;
             this.buttonDell.Text = "Удалить";
             this.buttonDell.UseVisualStyleBackColor = true;
+            this.buttonDell.Click += new System.EventHandler(this.buttonDell_Click);
             // 
             // buttonClear
             // 
