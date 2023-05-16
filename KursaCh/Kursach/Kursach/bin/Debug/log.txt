@@ -1,0 +1,12 @@
+New data01.01.0001 0:00:00 Chebushev method:
+
+for n(2)= 44
+
+for n(3)= 44
+
+for n(4)= 44
+
+for n(5)= 44
+
+for n(6)= 44
+

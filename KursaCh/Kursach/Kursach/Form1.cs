@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -14,9 +15,11 @@ namespace Kursach
     public partial class Form1 : Form
     {
 
-
+        DataBase dataBase = new DataBase();
         Func<double, double> f = x => x * x; //integral eq
-
+        DateTime dateTime = DateTime.Now;
+        string savePath = Environment.CurrentDirectory + $"\\log{DateTime.Now.ToString("dd/MM/yyyy")}.txt";
+        
         public Form1()
         {
             InitializeComponent();
@@ -24,6 +27,12 @@ namespace Kursach
         private void Form1_Load(object sender, EventArgs e)
         { 
             lbfuncShower.Text = "x * x";
+            savePath = Environment.CurrentDirectory + $"\\log{dateTime.ToString("dd/MM/yyyy")}.txt";
+            using (StreamWriter sw = new StreamWriter(savePath))
+            {
+                sw.WriteLine($"Programm Name: {System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName}" +
+                    Environment.NewLine + "Function: x * x" + Environment.NewLine);
+            }
         }
 
 
@@ -49,6 +58,8 @@ namespace Kursach
                 return false;
             }
         }
+
+        
         private void butCheb_Click(object sender, EventArgs e)
         {
             if(f == null) return;
@@ -62,11 +73,24 @@ namespace Kursach
                     int n_Max = Convert.ToInt32(tNcount.Text);
                     double a_cheb = Convert.ToDouble(tAeq.Text);
                     double b_cheb = Convert.ToDouble(tBeq.Text);
-                    for(int n= 2; n <= n_Max; n++)
+
+                    dataBase.cheb_a = a_cheb;
+                    dataBase.cheb_b = b_cheb;
+                    dataBase.cheb_n = n_Max;
+                    using(StreamWriter sw = new StreamWriter(savePath, append: true))
                     {
-                        double result_chebushev = Methods.Chebushev(a_cheb, b_cheb, n, f);
-                        listCheb.Items.Add(result_chebushev);
+                        sw.WriteLine($"New data{dateTime} Chebushev method:\n");
+                        for (int n = 2; n <= n_Max; n++)
+                        {
+                            double result_chebushev = Methods.Chebushev(a_cheb, b_cheb, n, f);
+                            sw.WriteLine($"for n({n})= {result_chebushev}\n");
+                            listCheb.Items.Add(result_chebushev);
+                        }
                     }
+                        
+                        
+                    
+                    
                 }
             }
         }
@@ -84,11 +108,21 @@ namespace Kursach
                     int n_Max = Convert.ToInt32(tNcount.Text);
                     double a_gauss = Convert.ToDouble(tAeq.Text);
                     double b_gauss = Convert.ToDouble(tBeq.Text);
-                    for (int n = 2; n <= n_Max; n++)
+
+                    dataBase.cheb_a = a_gauss;
+                    dataBase.cheb_b = b_gauss;
+                    dataBase.cheb_n = n_Max;
+                    using (StreamWriter sw = new StreamWriter(savePath, append: true))
                     {
-                        double result_gauss = Methods.Gauss(a_gauss, b_gauss, n, f);
-                        listGauss.Items.Add(result_gauss);
+                        sw.WriteLine($"New data{dateTime} Gauss method:\n");
+                        for (int n = 2; n <= n_Max; n++)
+                        {
+                            double result_gauss = Methods.Gauss(a_gauss, b_gauss, n, f);
+                            sw.WriteLine($"for n({n})= {result_gauss}\n");
+                            listGauss.Items.Add(result_gauss);
+                        }
                     }
+                    
                 }
             }
         }
@@ -184,22 +218,40 @@ namespace Kursach
 
                 int[] _max_counter= {listCheb.Items.Count, listGauss.Items.Count};
                 if (_max_counter[0] == _max_counter[1])
-                    for(int i= 0; i < _max_counter.Max(); i++)
+                    using (StreamWriter sw = new StreamWriter(savePath, append: true))
                     {
-                        double cheb = Convert.ToDouble(listCheb.Items[i]);
-                        double gauss = Convert.ToDouble(listGauss.Items[i]);
+                        sw.WriteLine($"New data{dateTime} Gauss method:\n");
+                        for (int i = 0; i < _max_counter.Max(); i++)
+                        {
+                            double cheb = Convert.ToDouble(listCheb.Items[i]);
+                            double gauss = Convert.ToDouble(listGauss.Items[i]);
 
-                        listComparison.Items.Add(Math.Abs(cheb - gauss));
+                            double res = Math.Abs(cheb - gauss);
+                            sw.WriteLine($"for n({i})= {res}\n");
+                            listComparison.Items.Add(res);
+                        }
                     }
                 else
-                    for(int i=0; i < _max_counter.Min(); i++)
+                    using (StreamWriter sw = new StreamWriter(savePath, append: true))
                     {
-                        double cheb = Convert.ToDouble(listCheb.Items[i]);
-                        double gauss = Convert.ToDouble(listGauss.Items[i]);
+                        sw.WriteLine($"New data{dateTime} Gauss method:\n");
+                        for (int i = 0; i < _max_counter.Min(); i++)
+                        {
+                            double cheb = Convert.ToDouble(listCheb.Items[i]);
+                            double gauss = Convert.ToDouble(listGauss.Items[i]);
 
-                        listComparison.Items.Add(Math.Abs(cheb - gauss));
+                            double res = Math.Abs(cheb - gauss);
+                            sw.WriteLine($"for n({i})= {res}\n");
+                            listComparison.Items.Add(res);
+                        }
                     }
             }
+        }
+
+        private void bPlot_Click(object sender, EventArgs e)
+        {
+            FormPlot formPlot= new FormPlot(dataBase);
+            formPlot.Show();
         }
     }
 }

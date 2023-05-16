@@ -1,0 +1,27 @@
+Programm Name: D:\VisualStudioRepo\LabiVasenckogo\KursaCh\Kursach\Kursach\bin\Debug\Kursach.exe
+Function: x * x
+
+New data18.04.2023 12:26:57 Chebushev method:
+
+for n(2)= 30,375
+
+for n(3)= 30,375
+
+for n(4)= 30,375
+
+New data18.04.2023 12:26:57 Gauss method:
+
+for n(2)= 1734
+
+for n(3)= 1108,09717269261
+
+for n(4)= 255959,482448724
+
+New data18.04.2023 12:26:57 Gauss method:
+
+for n(0)= 1703,625
+
+for n(1)= 1077,72217269261
+
+for n(2)= 255929,107448724
+
