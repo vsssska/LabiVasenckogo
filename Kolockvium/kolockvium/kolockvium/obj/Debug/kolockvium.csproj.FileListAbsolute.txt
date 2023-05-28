@@ -1,0 +1,11 @@
+D:\VisualStudioRepo\LabiVasenckogo\Kolockvium\kolockvium\kolockvium\bin\Debug\kolockvium.exe.config
+D:\VisualStudioRepo\LabiVasenckogo\Kolockvium\kolockvium\kolockvium\bin\Debug\kolockvium.exe
+D:\VisualStudioRepo\LabiVasenckogo\Kolockvium\kolockvium\kolockvium\bin\Debug\kolockvium.pdb
+D:\VisualStudioRepo\LabiVasenckogo\Kolockvium\kolockvium\kolockvium\obj\Debug\kolockvium.csproj.AssemblyReference.cache
+D:\VisualStudioRepo\LabiVasenckogo\Kolockvium\kolockvium\kolockvium\obj\Debug\kolockvium.csproj.SuggestedBindingRedirects.cache
+D:\VisualStudioRepo\LabiVasenckogo\Kolockvium\kolockvium\kolockvium\obj\Debug\kolockvium.Form1.resources
+D:\VisualStudioRepo\LabiVasenckogo\Kolockvium\kolockvium\kolockvium\obj\Debug\kolockvium.Properties.Resources.resources
+D:\VisualStudioRepo\LabiVasenckogo\Kolockvium\kolockvium\kolockvium\obj\Debug\kolockvium.csproj.GenerateResource.cache
+D:\VisualStudioRepo\LabiVasenckogo\Kolockvium\kolockvium\kolockvium\obj\Debug\kolockvium.csproj.CoreCompileInputs.cache
+D:\VisualStudioRepo\LabiVasenckogo\Kolockvium\kolockvium\kolockvium\obj\Debug\kolockvium.exe
+D:\VisualStudioRepo\LabiVasenckogo\Kolockvium\kolockvium\kolockvium\obj\Debug\kolockvium.pdb

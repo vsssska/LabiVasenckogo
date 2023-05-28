@@ -9,3 +9,15 @@ D:\VisualStudioRepos\Labs\TechnologyProg\KursaCh\Kursach\Kursach\obj\Debug\Kursa
 D:\VisualStudioRepos\Labs\TechnologyProg\KursaCh\Kursach\Kursach\obj\Debug\Kursach.csproj.CoreCompileInputs.cache
 D:\VisualStudioRepos\Labs\TechnologyProg\KursaCh\Kursach\Kursach\obj\Debug\Kursach.exe
 D:\VisualStudioRepos\Labs\TechnologyProg\KursaCh\Kursach\Kursach\obj\Debug\Kursach.pdb
+D:\VisualStudioRepo\LabiVasenckogo\KursaCh\Kursach\Kursach\bin\Debug\Kursach.exe.config
+D:\VisualStudioRepo\LabiVasenckogo\KursaCh\Kursach\Kursach\bin\Debug\Kursach.exe
+D:\VisualStudioRepo\LabiVasenckogo\KursaCh\Kursach\Kursach\bin\Debug\Kursach.pdb
+D:\VisualStudioRepo\LabiVasenckogo\KursaCh\Kursach\Kursach\obj\Debug\Kursach.csproj.AssemblyReference.cache
+D:\VisualStudioRepo\LabiVasenckogo\KursaCh\Kursach\Kursach\obj\Debug\Kursach.csproj.SuggestedBindingRedirects.cache
+D:\VisualStudioRepo\LabiVasenckogo\KursaCh\Kursach\Kursach\obj\Debug\Kursach.Form1.resources
+D:\VisualStudioRepo\LabiVasenckogo\KursaCh\Kursach\Kursach\obj\Debug\Kursach.FormPlot.resources
+D:\VisualStudioRepo\LabiVasenckogo\KursaCh\Kursach\Kursach\obj\Debug\Kursach.Properties.Resources.resources
+D:\VisualStudioRepo\LabiVasenckogo\KursaCh\Kursach\Kursach\obj\Debug\Kursach.csproj.GenerateResource.cache
+D:\VisualStudioRepo\LabiVasenckogo\KursaCh\Kursach\Kursach\obj\Debug\Kursach.csproj.CoreCompileInputs.cache
+D:\VisualStudioRepo\LabiVasenckogo\KursaCh\Kursach\Kursach\obj\Debug\Kursach.exe
+D:\VisualStudioRepo\LabiVasenckogo\KursaCh\Kursach\Kursach\obj\Debug\Kursach.pdb

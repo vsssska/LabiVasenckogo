@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\KursaCh",
-    "\\KursaCh\\Kursach"
+    "\\KursaCh\\Kursach",
+    "\\KursaCh\\Kursach\\Kursach"
   ],
-  "SelectedNode": "\\KursaCh",
+  "SelectedNode": "\\KursaCh\\Kursach\\Kursach\\Methods.cs",
   "PreviewInSolutionExplorer": false
 }

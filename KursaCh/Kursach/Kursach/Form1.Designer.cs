@@ -47,6 +47,7 @@
             this.lbComparison = new System.Windows.Forms.Label();
             this.listComparison = new System.Windows.Forms.ListBox();
             this.butComparison = new System.Windows.Forms.Button();
+            this.bPlot = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // butCheb
@@ -146,7 +147,7 @@
             this.listCheb.FormattingEnabled = true;
             this.listCheb.Location = new System.Drawing.Point(287, 50);
             this.listCheb.Name = "listCheb";
-            this.listCheb.Size = new System.Drawing.Size(188, 316);
+            this.listCheb.Size = new System.Drawing.Size(188, 381);
             this.listCheb.TabIndex = 9;
             // 
             // listGauss
@@ -154,7 +155,7 @@
             this.listGauss.FormattingEnabled = true;
             this.listGauss.Location = new System.Drawing.Point(481, 50);
             this.listGauss.Name = "listGauss";
-            this.listGauss.Size = new System.Drawing.Size(188, 316);
+            this.listGauss.Size = new System.Drawing.Size(188, 381);
             this.listGauss.TabIndex = 10;
             // 
             // lbChebRes
@@ -180,7 +181,7 @@
             // bChebClear
             // 
             this.bChebClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bChebClear.Location = new System.Drawing.Point(287, 372);
+            this.bChebClear.Location = new System.Drawing.Point(287, 443);
             this.bChebClear.Name = "bChebClear";
             this.bChebClear.Size = new System.Drawing.Size(188, 40);
             this.bChebClear.TabIndex = 13;
@@ -191,7 +192,7 @@
             // bGauClear
             // 
             this.bGauClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bGauClear.Location = new System.Drawing.Point(481, 372);
+            this.bGauClear.Location = new System.Drawing.Point(481, 443);
             this.bGauClear.Name = "bGauClear";
             this.bGauClear.Size = new System.Drawing.Size(188, 40);
             this.bGauClear.TabIndex = 14;
@@ -202,7 +203,7 @@
             // bComparisonClear
             // 
             this.bComparisonClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bComparisonClear.Location = new System.Drawing.Point(675, 372);
+            this.bComparisonClear.Location = new System.Drawing.Point(675, 443);
             this.bComparisonClear.Name = "bComparisonClear";
             this.bComparisonClear.Size = new System.Drawing.Size(188, 40);
             this.bComparisonClear.TabIndex = 17;
@@ -225,7 +226,7 @@
             this.listComparison.FormattingEnabled = true;
             this.listComparison.Location = new System.Drawing.Point(675, 50);
             this.listComparison.Name = "listComparison";
-            this.listComparison.Size = new System.Drawing.Size(188, 316);
+            this.listComparison.Size = new System.Drawing.Size(188, 381);
             this.listComparison.TabIndex = 15;
             // 
             // butComparison
@@ -239,11 +240,23 @@
             this.butComparison.UseVisualStyleBackColor = true;
             this.butComparison.Click += new System.EventHandler(this.butComparison_Click);
             // 
+            // bPlot
+            // 
+            this.bPlot.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bPlot.Location = new System.Drawing.Point(11, 418);
+            this.bPlot.Name = "bPlot";
+            this.bPlot.Size = new System.Drawing.Size(261, 65);
+            this.bPlot.TabIndex = 19;
+            this.bPlot.Text = "Показать графики";
+            this.bPlot.UseVisualStyleBackColor = true;
+            this.bPlot.Click += new System.EventHandler(this.bPlot_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(873, 424);
+            this.ClientSize = new System.Drawing.Size(873, 493);
+            this.Controls.Add(this.bPlot);
             this.Controls.Add(this.butComparison);
             this.Controls.Add(this.bComparisonClear);
             this.Controls.Add(this.lbComparison);
@@ -292,6 +305,7 @@
         private System.Windows.Forms.Label lbComparison;
         private System.Windows.Forms.ListBox listComparison;
         private System.Windows.Forms.Button butComparison;
+        private System.Windows.Forms.Button bPlot;
     }
 }
 
