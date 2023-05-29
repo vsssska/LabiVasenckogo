@@ -28,20 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.построитьГрафикToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.очиститьГрафикToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьНастройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -57,10 +58,26 @@
             this.checkBox_cos = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.comboBox_chartType = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.comboBox_chartChoose = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.comboBox_color = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.numericUpDown_borderWidth = new System.Windows.Forms.NumericUpDown();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.chart_demo = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox_accuracy = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.button_save = new System.Windows.Forms.Button();
             this.button_accuracy = new System.Windows.Forms.Button();
             this.button_clear = new System.Windows.Forms.Button();
             this.button_Calc = new System.Windows.Forms.Button();
@@ -73,22 +90,7 @@
             this.textBox_dataGauss = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox_dataCheb = new System.Windows.Forms.TextBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.сохранитьНастройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comboBox_color = new System.Windows.Forms.ComboBox();
-            this.comboBox_chartChoose = new System.Windows.Forms.ComboBox();
-            this.chart_demo = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.numericUpDown_borderWidth = new System.Windows.Forms.NumericUpDown();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.comboBox_chartType = new System.Windows.Forms.ComboBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.menuStrip2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -96,15 +98,15 @@
             this.groupBox3.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_borderWidth)).BeginInit();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_demo)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart_demo)).BeginInit();
-            this.groupBox6.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_borderWidth)).BeginInit();
-            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -117,43 +119,43 @@
             // 
             // chart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            legend1.Title = "Цвета графиков";
-            this.chart.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea3);
+            legend2.Name = "Legend1";
+            legend2.Title = "Цвета графиков";
+            this.chart.Legends.Add(legend2);
             this.chart.Location = new System.Drawing.Point(6, 27);
             this.chart.Name = "chart";
-            series1.BorderWidth = 3;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Color = System.Drawing.Color.Blue;
-            series1.Legend = "Legend1";
-            series1.LegendText = "sin";
-            series1.Name = "Series1";
-            series2.BorderWidth = 3;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Color = System.Drawing.Color.Red;
-            series2.Legend = "Legend1";
-            series2.LegendText = "cos";
-            series2.Name = "Series2";
-            series3.BorderWidth = 3;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Color = System.Drawing.Color.Green;
-            series3.Legend = "Legend1";
-            series3.Name = "tan";
-            this.chart.Series.Add(series1);
-            this.chart.Series.Add(series2);
-            this.chart.Series.Add(series3);
+            series5.BorderWidth = 3;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series5.Color = System.Drawing.Color.Blue;
+            series5.Legend = "Legend1";
+            series5.LegendText = "sin";
+            series5.Name = "Series1";
+            series6.BorderWidth = 3;
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series6.Color = System.Drawing.Color.Red;
+            series6.Legend = "Legend1";
+            series6.LegendText = "cos";
+            series6.Name = "Series2";
+            series7.BorderWidth = 3;
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series7.Color = System.Drawing.Color.Green;
+            series7.Legend = "Legend1";
+            series7.Name = "tan";
+            this.chart.Series.Add(series5);
+            this.chart.Series.Add(series6);
+            this.chart.Series.Add(series7);
             this.chart.Size = new System.Drawing.Size(800, 517);
             this.chart.TabIndex = 1;
             this.chart.Text = "chart1";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            title1.Name = "Title1";
-            title1.Text = "График функций";
-            this.chart.Titles.Add(title1);
+            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            title2.Name = "Title1";
+            title2.Text = "График функций";
+            this.chart.Titles.Add(title2);
             // 
             // menuStrip2
             // 
@@ -189,6 +191,13 @@
             this.очиститьГрафикToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.очиститьГрафикToolStripMenuItem.Text = "Очистить график";
             this.очиститьГрафикToolStripMenuItem.Click += new System.EventHandler(this.очиститьГрафикToolStripMenuItem_Click);
+            // 
+            // сохранитьНастройкиToolStripMenuItem
+            // 
+            this.сохранитьНастройкиToolStripMenuItem.Name = "сохранитьНастройкиToolStripMenuItem";
+            this.сохранитьНастройкиToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.сохранитьНастройкиToolStripMenuItem.Text = "Сохранить настройки";
+            this.сохранитьНастройкиToolStripMenuItem.Click += new System.EventHandler(this.сохранитьНастройкиToolStripMenuItem_Click);
             // 
             // выходToolStripMenuItem
             // 
@@ -340,6 +349,194 @@
             this.tabPage1.Text = "Вывод графика";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.groupBox7);
+            this.tabPage3.Location = new System.Drawing.Point(4, 33);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1095, 556);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Настройка графика";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.button1);
+            this.groupBox7.Controls.Add(this.groupBox8);
+            this.groupBox7.Controls.Add(this.groupBox6);
+            this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox7.Location = new System.Drawing.Point(3, 3);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(1089, 550);
+            this.groupBox7.TabIndex = 0;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Панель управления";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(23, 435);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(363, 56);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Применить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.label13);
+            this.groupBox8.Controls.Add(this.comboBox_chartType);
+            this.groupBox8.Controls.Add(this.label9);
+            this.groupBox8.Controls.Add(this.comboBox_chartChoose);
+            this.groupBox8.Controls.Add(this.label12);
+            this.groupBox8.Controls.Add(this.comboBox_color);
+            this.groupBox8.Controls.Add(this.label10);
+            this.groupBox8.Controls.Add(this.label11);
+            this.groupBox8.Controls.Add(this.numericUpDown_borderWidth);
+            this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox8.Location = new System.Drawing.Point(6, 84);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(400, 345);
+            this.groupBox8.TabIndex = 5;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Параметры";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.Location = new System.Drawing.Point(182, 214);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(112, 25);
+            this.label13.TabIndex = 11;
+            this.label13.Text = "от 1 до 14";
+            // 
+            // comboBox_chartType
+            // 
+            this.comboBox_chartType.FormattingEnabled = true;
+            this.comboBox_chartType.Location = new System.Drawing.Point(56, 278);
+            this.comboBox_chartType.Name = "comboBox_chartType";
+            this.comboBox_chartType.Size = new System.Drawing.Size(231, 33);
+            this.comboBox_chartType.TabIndex = 10;
+            this.comboBox_chartType.SelectedIndexChanged += new System.EventHandler(this.comboBox_chartType_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(51, 52);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(305, 25);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Выбор изменяемого графика";
+            // 
+            // comboBox_chartChoose
+            // 
+            this.comboBox_chartChoose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox_chartChoose.FormattingEnabled = true;
+            this.comboBox_chartChoose.Items.AddRange(new object[] {
+            "Sin",
+            "Cos",
+            "Tan"});
+            this.comboBox_chartChoose.Location = new System.Drawing.Point(56, 80);
+            this.comboBox_chartChoose.Name = "comboBox_chartChoose";
+            this.comboBox_chartChoose.Size = new System.Drawing.Size(207, 33);
+            this.comboBox_chartChoose.TabIndex = 2;
+            this.comboBox_chartChoose.SelectedIndexChanged += new System.EventHandler(this.comboBox_chartChoose_SelectedIndexChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label12.Location = new System.Drawing.Point(51, 250);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(219, 25);
+            this.label12.TabIndex = 9;
+            this.label12.Text = "Выбор типа графика";
+            // 
+            // comboBox_color
+            // 
+            this.comboBox_color.FormattingEnabled = true;
+            this.comboBox_color.Items.AddRange(new object[] {
+            "blue",
+            "red",
+            "green",
+            "yellow",
+            "black"});
+            this.comboBox_color.Location = new System.Drawing.Point(56, 144);
+            this.comboBox_color.Name = "comboBox_color";
+            this.comboBox_color.Size = new System.Drawing.Size(231, 33);
+            this.comboBox_color.TabIndex = 1;
+            this.comboBox_color.SelectedIndexChanged += new System.EventHandler(this.comboBox_color_SelectedIndexChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.Location = new System.Drawing.Point(51, 116);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(140, 25);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "Выбор цвета";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label11.Location = new System.Drawing.Point(51, 184);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(282, 25);
+            this.label11.TabIndex = 8;
+            this.label11.Text = "Выбор толщины линии (px)";
+            // 
+            // numericUpDown_borderWidth
+            // 
+            this.numericUpDown_borderWidth.Location = new System.Drawing.Point(56, 212);
+            this.numericUpDown_borderWidth.Maximum = new decimal(new int[] {
+            14,
+            0,
+            0,
+            0});
+            this.numericUpDown_borderWidth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_borderWidth.Name = "numericUpDown_borderWidth";
+            this.numericUpDown_borderWidth.Size = new System.Drawing.Size(120, 31);
+            this.numericUpDown_borderWidth.TabIndex = 7;
+            this.numericUpDown_borderWidth.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_borderWidth.ValueChanged += new System.EventHandler(this.numericUpDown_borderWidth_ValueChanged);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.chart_demo);
+            this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox6.Location = new System.Drawing.Point(412, 84);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(671, 407);
+            this.groupBox6.TabIndex = 4;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Предпросмотр";
+            // 
+            // chart_demo
+            // 
+            chartArea4.Name = "ChartArea1";
+            this.chart_demo.ChartAreas.Add(chartArea4);
+            this.chart_demo.Location = new System.Drawing.Point(6, 28);
+            this.chart_demo.Name = "chart_demo";
+            series8.BorderWidth = 3;
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series8.Name = "Series1";
+            this.chart_demo.Series.Add(series8);
+            this.chart_demo.Size = new System.Drawing.Size(659, 361);
+            this.chart_demo.TabIndex = 3;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label8);
@@ -377,6 +574,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.button_save);
             this.groupBox5.Controls.Add(this.button_accuracy);
             this.groupBox5.Controls.Add(this.button_clear);
             this.groupBox5.Controls.Add(this.button_Calc);
@@ -386,6 +584,16 @@
             this.groupBox5.TabIndex = 7;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Управление";
+            // 
+            // button_save
+            // 
+            this.button_save.Location = new System.Drawing.Point(36, 157);
+            this.button_save.Name = "button_save";
+            this.button_save.Size = new System.Drawing.Size(138, 69);
+            this.button_save.TabIndex = 3;
+            this.button_save.Text = "Сохранить";
+            this.button_save.UseVisualStyleBackColor = true;
+            this.button_save.Click += new System.EventHandler(this.button2_Click);
             // 
             // button_accuracy
             // 
@@ -496,174 +704,6 @@
             this.textBox_dataCheb.Size = new System.Drawing.Size(271, 520);
             this.textBox_dataCheb.TabIndex = 0;
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.groupBox7);
-            this.tabPage3.Location = new System.Drawing.Point(4, 33);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1095, 556);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Настройка графика";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // сохранитьНастройкиToolStripMenuItem
-            // 
-            this.сохранитьНастройкиToolStripMenuItem.Name = "сохранитьНастройкиToolStripMenuItem";
-            this.сохранитьНастройкиToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.сохранитьНастройкиToolStripMenuItem.Text = "Сохранить настройки";
-            this.сохранитьНастройкиToolStripMenuItem.Click += new System.EventHandler(this.сохранитьНастройкиToolStripMenuItem_Click);
-            // 
-            // comboBox_color
-            // 
-            this.comboBox_color.FormattingEnabled = true;
-            this.comboBox_color.Items.AddRange(new object[] {
-            "blue",
-            "red",
-            "green",
-            "yellow",
-            "black"});
-            this.comboBox_color.Location = new System.Drawing.Point(56, 144);
-            this.comboBox_color.Name = "comboBox_color";
-            this.comboBox_color.Size = new System.Drawing.Size(231, 33);
-            this.comboBox_color.TabIndex = 1;
-            // 
-            // comboBox_chartChoose
-            // 
-            this.comboBox_chartChoose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox_chartChoose.FormattingEnabled = true;
-            this.comboBox_chartChoose.Items.AddRange(new object[] {
-            "Sin",
-            "Cos",
-            "Tan"});
-            this.comboBox_chartChoose.Location = new System.Drawing.Point(56, 80);
-            this.comboBox_chartChoose.Name = "comboBox_chartChoose";
-            this.comboBox_chartChoose.Size = new System.Drawing.Size(207, 33);
-            this.comboBox_chartChoose.TabIndex = 2;
-            // 
-            // chart_demo
-            // 
-            chartArea2.Name = "ChartArea1";
-            this.chart_demo.ChartAreas.Add(chartArea2);
-            this.chart_demo.Location = new System.Drawing.Point(6, 28);
-            this.chart_demo.Name = "chart_demo";
-            series4.BorderWidth = 3;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Name = "Series1";
-            this.chart_demo.Series.Add(series4);
-            this.chart_demo.Size = new System.Drawing.Size(659, 361);
-            this.chart_demo.TabIndex = 3;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.chart_demo);
-            this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox6.Location = new System.Drawing.Point(412, 84);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(671, 407);
-            this.groupBox6.TabIndex = 4;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Предпросмотр";
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.button1);
-            this.groupBox7.Controls.Add(this.groupBox8);
-            this.groupBox7.Controls.Add(this.groupBox6);
-            this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox7.Location = new System.Drawing.Point(3, 3);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(1089, 550);
-            this.groupBox7.TabIndex = 0;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Панель управления";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(51, 52);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(305, 25);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "Выбор изменяемого графика";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(51, 116);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(140, 25);
-            this.label10.TabIndex = 6;
-            this.label10.Text = "Выбор цвета";
-            // 
-            // numericUpDown_borderWidth
-            // 
-            this.numericUpDown_borderWidth.Location = new System.Drawing.Point(56, 212);
-            this.numericUpDown_borderWidth.Name = "numericUpDown_borderWidth";
-            this.numericUpDown_borderWidth.Size = new System.Drawing.Size(120, 31);
-            this.numericUpDown_borderWidth.TabIndex = 7;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(51, 184);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(282, 25);
-            this.label11.TabIndex = 8;
-            this.label11.Text = "Выбор толщины линии (px)";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(51, 250);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(219, 25);
-            this.label12.TabIndex = 9;
-            this.label12.Text = "Выбор типа графика";
-            // 
-            // comboBox_chartType
-            // 
-            this.comboBox_chartType.FormattingEnabled = true;
-            this.comboBox_chartType.Items.AddRange(new object[] {
-            "Point",
-            "Line",
-            "Spline"});
-            this.comboBox_chartType.Location = new System.Drawing.Point(56, 278);
-            this.comboBox_chartType.Name = "comboBox_chartType";
-            this.comboBox_chartType.Size = new System.Drawing.Size(231, 33);
-            this.comboBox_chartType.TabIndex = 10;
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.comboBox_chartType);
-            this.groupBox8.Controls.Add(this.label9);
-            this.groupBox8.Controls.Add(this.comboBox_chartChoose);
-            this.groupBox8.Controls.Add(this.label12);
-            this.groupBox8.Controls.Add(this.comboBox_color);
-            this.groupBox8.Controls.Add(this.label10);
-            this.groupBox8.Controls.Add(this.label11);
-            this.groupBox8.Controls.Add(this.numericUpDown_borderWidth);
-            this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox8.Location = new System.Drawing.Point(6, 84);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(400, 345);
-            this.groupBox8.TabIndex = 5;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Параметры";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(23, 435);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(363, 56);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Применить";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -686,18 +726,18 @@
             this.groupBox3.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_borderWidth)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart_demo)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart_demo)).EndInit();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_borderWidth)).EndInit();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -758,6 +798,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.NumericUpDown numericUpDown_borderWidth;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button button_save;
     }
 }
 
