@@ -35,43 +35,31 @@ namespace KursovayaV4
         static double[] t4c = { -0.794654, -0.187592, 0.187592, 0.794654 };
         static double[] t5c = { -0.832498, -0.374541, 0, 0.374541, 0.832498 };
         static double[][] tcheb = { t2c, t3c, t4c, t5c };
-        
 
-        public static double chebishev(double a, double b, int n, int ni, int fl)
+        //Подынтегральная функция
+        private static double func(double x)
+        {
+            return Math.Pow(Math.Sin(x), 2);  
+        }
+        public static double chebishev(double a, double b, int n, int ni)
         {
             double s;
             n = n - 2;
 
-            s = (b + a / 2) + ((b - a) / 2) * tcheb[n][ni]; //Формула Чебышева
-            Console.WriteLine($"(b-a)={b-a} " +
-                $" tcheb[{n}][{ni}]= {tcheb[n][ni]} " +
-                $" s= {s}");
-            if (fl == 0) 
-                s = Math.Sin(s);
-            else if (fl == 1) 
-                s= Math.Cos(s);
-            else 
-                s= Math.Tan(s);
+            s = (b + a / 2) * ((b - a) / 2) * tcheb[n][ni]; //Формула Чебышева
+            s = func(s);
+
             return s;
         }
 
 
-        public static double gauss(double a, double b, int n, int ni, int fl)
+        public static double gauss(double a, double b, int n, int ni)
         {
             double s;
             n = n - 2;
-
             
-            s = (b + a / 2) + ((b - a) / 2) * tgauss[n][ni]; //Формула Гаусса
-
-            if (fl == 0)  
-                s = agauss[n][ni] * Math.Sin(s);
-                
-            else if (fl == 1) 
-                s = agauss[n][ni] * Math.Cos(s);
-
-            else 
-                s = agauss[n][ni] * Math.Tan(s);
+            s = (b + a / 2) * ((b - a) / 2) * tgauss[n][ni]; //Формула Гаусса
+            s = agauss[n][ni] * func(s);
             
             return s;
         }

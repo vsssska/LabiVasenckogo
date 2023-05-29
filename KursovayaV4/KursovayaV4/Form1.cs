@@ -134,7 +134,7 @@ namespace KursovayaV4
                     textBox_dataCheb.Text += $"Для {i} узлов " + Environment.NewLine;
                     for(int j = 0; j < i; j++) 
                     {
-                        y += Functions.chebishev(a1, b1, i, j, 0);
+                        y += Functions.chebishev(a1, b1, i, j);
                     }
                     y *= (b1 - a1) / i;
 
@@ -155,7 +155,7 @@ namespace KursovayaV4
                     textBox_dataGauss.Text += $"Для {i} узлов " + Environment.NewLine;
                     for (int j = 0; j < i; j++)
                     {
-                        y += Functions.gauss(a1, b1, i, j, 0);
+                        y += Functions.gauss(a1, b1, i, j);
                         Console.WriteLine($"y[{i}][{j}]= {y} ");
                     }
                     y *= (b1 - a1) / 2;
@@ -185,14 +185,17 @@ namespace KursovayaV4
         private void button_accuracy_Click(object sender, EventArgs e)
         {
             textBox_accuracy.Text = string.Empty;
-            double delA;
+            double delA, delB;
 
-            textBox_accuracy.Text = "Для функции y= sin(x), ошибка метода Чебышева составила:" + Environment.NewLine;
-            for(int i = 0; i < z.Length/2; i++)
-            {
-                delA = Math.Abs(z[0, i] - z[1, i]);
-                textBox_accuracy.Text +=  $"Для {i+2}х узлов delA= {delA}" + Environment.NewLine;
-            }
+            delA = Math.Abs(z[0, 2] - z[0, 0]);
+            delB = Math.Abs(z[1, 2] - z[1, 0]);
+
+            textBox_accuracy.Text = "===Для функции y= sin(x)===" + Environment.NewLine + 
+                "ошибка для метода Чебышева составила:" + Environment.NewLine +
+                $"~~delA= {delA}" + Environment.NewLine;
+
+            textBox_accuracy.Text += "ошибка для метода Гаусса составила:" + Environment.NewLine +
+                $"~~delB= {delB}" + Environment.NewLine;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -206,20 +209,26 @@ namespace KursovayaV4
                 {
                     using (StreamWriter sw = new StreamWriter(fs))
                     {
+                        double delA, delB;
+
                         sw.BaseStream.Seek(0, SeekOrigin.End);
                         sw.WriteLine("====" + DateTime.Now.ToString("t") + "====");
                         sw.WriteLine("Начальные параметры:" +
-                            Environment.NewLine + $"\ta= {a}" +
-                            Environment.NewLine + $"\tb= {b}" +
+                            Environment.NewLine + $"\ta= {a1}" +
+                            Environment.NewLine + $"\tb= {b1}" +
                             Environment.NewLine + "y= sin(x)");
-                        sw.WriteLine("n\tChebishev\t\tGauss\t\tdelA");
+                        sw.WriteLine("n\tChebishev\t\tGauss");
 
-                        double delA;
+                        
                         for (int i = 0; i < z.Length/2; i++)
                         {
-                            delA = Math.Abs(z[0, i] - z[1, i]);
-                            sw.WriteLine($"{i}\t{z[0, i]}\t{z[1, i]}\t{delA}");
+                            sw.WriteLine($"{i+2}\t{z[0, i]}\t{z[1, i]}");
                         }
+                        
+                        delA = Math.Abs(z[0, 2] - z[0, 0]);
+                        delB = Math.Abs(z[1, 2] - z[1, 0]);
+                        sw.WriteLine($"ошибка для метода Чебышева составила: {delA}" + Environment.NewLine +
+                $"ошибка для метода Гаусса составила: {delB}" + Environment.NewLine);
 
                         sw.WriteLine("n- кол-во узлов || a- начальная точка|| b- конечная точка" + Environment.NewLine);
                         sw.Close();
@@ -314,12 +323,12 @@ namespace KursovayaV4
                 return;
             }
 
-            if (checkBox_cos.Checked)
+            if (checkBox_sin.Checked)
             {
                 this.chart.Series[0].Points.Clear();
             }
 
-            if (checkBox_sin.Checked)
+            if (checkBox_cos.Checked)
             {
                 this.chart.Series[1].Points.Clear();
             }
