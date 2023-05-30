@@ -24,7 +24,7 @@ namespace KursovayaV4
 
         //Значчения коэффициентов Аi в квадратурной формуле Гаусса
         static double[] a2 = { 1, 1 };
-        static double[] a3 = { 5 / 9, 8 / 9, 5 / 9 };
+        static double[] a3 = { 0.5555556, 0.8888888, 0.5555556 };
         static double[] a4 = { 0.34785484, 0.65214516, 0.65214516, 0.34785484 };
         static double[] a5 = { 0.23692688, 0.47862868, 0.568888889, 0.47862868, 0.23692688 };
         static double[][] agauss = {a2, a3, a4, a5};
@@ -41,27 +41,102 @@ namespace KursovayaV4
         {
             return Math.Pow(Math.Sin(x), 2);  
         }
-        public static double chebishev(double a, double b, int n, int ni)
-        {
-            double s;
-            n = n - 2;
 
-            s = (b + a / 2) * ((b - a) / 2) * tcheb[n][ni]; //Формула Чебышева
-            s = func(s);
+        //Метод Чебышева
+        private static double cheb_temp(double a, double b, int n, int func_index)
+        {
+            double s = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                s += (b + a / 2) + ((b - a) / 2) * tcheb[n][i]; //Формула Чебышева
+
+                if (func_index == 0)
+                    s += first_func(s);
+                if (func_index == 1)
+                    s += second_func(s);
+                if (func_index == 2)
+                    s += third_func(s);
+            }
+
+            
+
+            return s;
+        }
+        public static double chebishev(double a, double b, double eps, int n, int func_index)
+        {
+            double s = 0;
+            double pastS = 0;
+            int c = 1; //кол-во разбиений отрезка
+            int itteration = 0;
+            double va, vb;
+            va = a;
+            vb = b;
+            //n = n - 2;
+
+            do
+            {
+                pastS = s;
+
+                s = 0;
+                
+
+                for (int i = 0; i < c; i++)
+                {
+                    s += ((vb - va) / 2) * cheb_temp(va, vb, n, func_index);
+                    va = vb;
+                    vb = va + ((b-a)/c);
+
+                    Console.WriteLine("va= " + va);
+                    Console.WriteLine("vb= " + vb);
+                }
+                    
+                
+                
+                
+                itteration++;
+
+                c++;
+                va = a;
+                vb = b;
+
+                Console.WriteLine("pastS= " + pastS);
+                Console.WriteLine("S= " + s);
+                
+                if(itteration== 2)
+                    break;
+            } while (Math.Abs(pastS - s) > eps);
 
             return s;
         }
 
-
+        //Метод Гаусса
         public static double gauss(double a, double b, int n, int ni)
         {
             double s;
             n = n - 2;
             
-            s = (b + a / 2) * ((b - a) / 2) * tgauss[n][ni]; //Формула Гаусса
+            s = (b + a / 2) + ((b - a) / 2) * tgauss[n][ni]; //Формула Гаусса
             s = agauss[n][ni] * func(s);
             
             return s;
+        }
+        
+
+        //Функции для графиков
+        public static double first_func(double x)
+        {
+            return Math.Sin(x);
+        }
+
+        public static double second_func(double x)
+        {
+            return 1/x;
+        }
+
+        public static double third_func(double x)
+        {
+            return Math.Pow(x, 2);
         }
     }
 }

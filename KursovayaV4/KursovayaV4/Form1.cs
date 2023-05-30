@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Runtime;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -10,19 +11,21 @@ namespace KursovayaV4
 {
     public partial class Form1 : Form
     {
-        private double a, b, h; //Значения для Графиков
-        private double a1, b1; //Значения для рассчета по разным методам
         private double x, y; // х у для графиков
 
-        private string logsDirect = Directory.GetCurrentDirectory() + "/logs";
-        private string logsName =  DateTime.Now.ToString("yyyyMMdd") + ".txt";
-        
+        private string logsDirect = Directory.GetCurrentDirectory() + "/logs"; //Папка, в которой хранятся файлы с данными о вычислениях
+        private string logsName = DateTime.Now.ToString("yyyyMMdd") + ".txt"; //Имя файла в которой хранятся данные о вычислениях
+
         Settings settings = new Settings();
 
-        //Массив, который хранит данные для 1 задания
-        private double[,] z = new double[2, 4]; //0ая Строка - значения по методу Чебышева, 1ая Строка - значения по методу Гаусса
+        private static int integral_methods = 2; //Количество методов
+        private static int quant_nodes = 4;   //Количество используемых узлов
+        private static int quant_formuls = 3;    //Количество формул
         
-        
+        private double[,,] z = new double[integral_methods, quant_nodes, quant_formuls]; //Массив, который хранит данные для 1 задания
+
+
+
         //Общие настройки
         public Form1()
         {
@@ -32,17 +35,12 @@ namespace KursovayaV4
         {
             try
             {
-                a = Convert.ToDouble(textBox_a.Text);
-                b = Convert.ToDouble(textBox_b.Text);
-                h = Convert.ToDouble(textBox_h.Text);
-                a1 = Convert.ToDouble(textBox_a1.Text);
-                b1 = Convert.ToDouble(textBox_b1.Text);
-
-                settings.a = a;
-                settings.b = b;
-                settings.h = h;
-                settings.a1 = a1;
-                settings.b1 = b1;
+                settings.a = Convert.ToDouble(textBox_a.Text);
+                settings.b = Convert.ToDouble(textBox_b.Text);
+                settings.h = Convert.ToDouble(textBox_h.Text);
+                settings.a1 = Convert.ToDouble(textBox_a1.Text);
+                settings.b1 = Convert.ToDouble(textBox_b1.Text);
+                settings.eps = Convert.ToDouble(textBox_epsilon.Text);
 
                 settings.ColorOfSin = typeof(Color).GetProperty("Name").GetValue(this.chart.Series[0].Color).ToString();
                 settings.ColorOfCos = typeof(Color).GetProperty("Name").GetValue(this.chart.Series[1].Color).ToString();
@@ -81,17 +79,12 @@ namespace KursovayaV4
             this.chart.Series[1].ChartType = (SeriesChartType)Enum.Parse(typeof(SeriesChartType), settings.ChartTypeCos);
             this.chart.Series[2].ChartType = (SeriesChartType)Enum.Parse(typeof(SeriesChartType), settings.ChartTypeTan);
 
-            a = settings.a;
-            b = settings.b;
-            h = settings.h;
-            a1 = settings.a1;
-            b1 = settings.b1;
-
-            textBox_a.Text = Convert.ToString(a);
-            textBox_b.Text = Convert.ToString(b);
-            textBox_h.Text = Convert.ToString(h);
-            textBox_a1.Text = Convert.ToString(a1);
-            textBox_b1.Text = Convert.ToString(b1);
+            textBox_a.Text = Convert.ToString(settings.a);
+            textBox_b.Text = Convert.ToString(settings.b);
+            textBox_h.Text = Convert.ToString(settings.h);
+            textBox_a1.Text = Convert.ToString(settings.a1);
+            textBox_b1.Text = Convert.ToString(settings.b1);
+            textBox_epsilon.Text = Convert.ToString(settings.eps);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -115,61 +108,44 @@ namespace KursovayaV4
         //Работа с методами
         private void button_Calc_Click(object sender, EventArgs e)
         {
-            
-            int n = 5;
             try
             {
-                a1 = Convert.ToDouble(textBox_a1.Text);
-                b1 = Convert.ToDouble(textBox_b1.Text);
+                settings.a1 = Convert.ToDouble(textBox_a1.Text);
+                settings.b1 = Convert.ToDouble(textBox_b1.Text);
+                settings.eps= Convert.ToDouble(textBox_epsilon.Text);
 
                 //Рассчет по методу Чебышева по узлам от 2 до 5
                 textBox_dataCheb.Text = string.Empty;
-                textBox_dataCheb.Text = "Для функции _/sin(x)dx" + Environment.NewLine;
+                
 
-                x = a1;
-                for(int i = 2; i <= n; i++)
+                x = settings.a1;
+                for (int i = 0; i < quant_formuls; i++)
                 {
-                    y = 0;
+                    textBox_dataCheb.Text = "=========Для функции _/sin(x)dx===============" + Environment.NewLine +
+                        "n\tChebishev\t\tGauss";
 
-                    textBox_dataCheb.Text += $"Для {i} узлов " + Environment.NewLine;
-                    for(int j = 0; j < i; j++) 
+                    for (int j = 0; j < quant_nodes; j++)
                     {
-                        y += Functions.chebishev(a1, b1, i, j);
+                        x = Functions.chebishev(settings.a1, settings.b1, settings.eps, j, i);
+                        
                     }
-                    y *= (b1 - a1) / i;
 
-                    z[0, i-2] = y; //Записываем значение в массив для хранения
-                    Console.WriteLine($"z[0, {i-2}]= {z[0, i - 2]}");
-                    textBox_dataCheb.Text += $"Интеграл sin(x)= {y}" + Environment.NewLine;
+                    Console.WriteLine($"chebishev= {x} ");
                 }
 
                 //Рассчет по методу Гаусса по узлам от 2 до 5
                 textBox_dataGauss.Text = string.Empty;
                 textBox_dataGauss.Text = "Для функции _/sin(x)dx" + Environment.NewLine;
 
-                x = a1;
-                for (int i = 2; i <= n; i++)
-                {
-                    y = 0;
-
-                    textBox_dataGauss.Text += $"Для {i} узлов " + Environment.NewLine;
-                    for (int j = 0; j < i; j++)
-                    {
-                        y += Functions.gauss(a1, b1, i, j);
-                        Console.WriteLine($"y[{i}][{j}]= {y} ");
-                    }
-                    y *= (b1 - a1) / 2;
-                    z[1, i - 2] = y; //Записываем значение в массив для хранения
-                    Console.WriteLine($"z[1, {i - 2}]= {z[1, i - 2]}");
-
-                    textBox_dataGauss.Text += $"Интеграл sin(x)= {y}" + Environment.NewLine;
-                }
+                x = settings.a1;
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка данных");
                 textBox_a1.Text = string.Empty;
                 textBox_b1.Text = string.Empty;
+                textBox_epsilon.Text = string.Empty;
             }
 
             
@@ -185,17 +161,7 @@ namespace KursovayaV4
         private void button_accuracy_Click(object sender, EventArgs e)
         {
             textBox_accuracy.Text = string.Empty;
-            double delA, delB;
-
-            delA = Math.Abs(z[0, 2] - z[0, 0]);
-            delB = Math.Abs(z[1, 2] - z[1, 0]);
-
-            textBox_accuracy.Text = "===Для функции y= sin(x)===" + Environment.NewLine + 
-                "ошибка для метода Чебышева составила:" + Environment.NewLine +
-                $"~~delA= {delA}" + Environment.NewLine;
-
-            textBox_accuracy.Text += "ошибка для метода Гаусса составила:" + Environment.NewLine +
-                $"~~delB= {delB}" + Environment.NewLine;
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -209,31 +175,11 @@ namespace KursovayaV4
                 {
                     using (StreamWriter sw = new StreamWriter(fs))
                     {
-                        double delA, delB;
+                        sw.WriteLine("");
 
-                        sw.BaseStream.Seek(0, SeekOrigin.End);
-                        sw.WriteLine("====" + DateTime.Now.ToString("t") + "====");
-                        sw.WriteLine("Начальные параметры:" +
-                            Environment.NewLine + $"\ta= {a1}" +
-                            Environment.NewLine + $"\tb= {b1}" +
-                            Environment.NewLine + "y= sin(x)");
-                        sw.WriteLine("n\tChebishev\t\tGauss");
 
-                        
-                        for (int i = 0; i < z.Length/2; i++)
-                        {
-                            sw.WriteLine($"{i+2}\t{z[0, i]}\t{z[1, i]}");
-                        }
-                        
-                        delA = Math.Abs(z[0, 2] - z[0, 0]);
-                        delB = Math.Abs(z[1, 2] - z[1, 0]);
-                        sw.WriteLine($"ошибка для метода Чебышева составила: {delA}" + Environment.NewLine +
-                $"ошибка для метода Гаусса составила: {delB}" + Environment.NewLine);
 
-                        sw.WriteLine("n- кол-во узлов || a- начальная точка|| b- конечная точка" + Environment.NewLine);
-                        sw.Close();
-                    }
-                    fs.Close();
+                    }    
                 }
             }
             catch (Exception ex)
@@ -254,50 +200,46 @@ namespace KursovayaV4
                 return;
             }
 
-            Console.WriteLine(chart.Series[0].Color);
             try
             {
-                a = Convert.ToDouble(textBox_a.Text);
-                b = Convert.ToDouble(textBox_b.Text);
-                h = Convert.ToDouble(textBox_h.Text);
+                settings.a = Convert.ToDouble(textBox_a.Text);
+                settings.b = Convert.ToDouble(textBox_b.Text);
+                settings.h = Convert.ToDouble(textBox_h.Text);
 
                 if (checkBox_sin.Checked)
                 {
-                    x = a;
+                    x = settings.a;
                     this.chart.Series[0].Points.Clear();
 
-                    while (x <= b)
+                    while (x <= settings.b)
                     {
-                        y = Math.Sin(x);
-                        this.chart.Series[0].Points.AddXY(x, y);
-                        x += h;
+                        this.chart.Series[0].Points.AddXY(x, Functions.first_func(x));
+                        x += settings.h;
                     }
 
                 }
 
                 if (checkBox_cos.Checked)
                 {
-                    x = a;
+                    x = settings.a;
                     this.chart.Series[1].Points.Clear();
 
-                    while (x <= b)
+                    while (x <= settings.b)
                     {
-                        y = Math.Cos(x);
-                        this.chart.Series[1].Points.AddXY(x, y);
-                        x += h;
+                        this.chart.Series[1].Points.AddXY(x, Functions.second_func(x));
+                        x += settings.h;
                     }
                 }
 
                 if (checkBox_tan.Checked)
                 {
-                    x = a;
+                    x = settings.a;
                     this.chart.Series[2].Points.Clear();
 
-                    while (x <= b)
+                    while (x <= settings.b)
                     {
-                        y = Math.Tan(x);
-                        this.chart.Series[2].Points.AddXY(x, y);
-                        x += h;
+                        this.chart.Series[2].Points.AddXY(x, Functions.third_func(x));
+                        x += settings.h;
                     }
                 }
             }
@@ -305,12 +247,12 @@ namespace KursovayaV4
             {
                 MessageBox.Show(ex.Message, "Внимание!");
                 MessageBox.Show("Параметры по умолчанию!", "Внимание!");
-                a = -10;
-                textBox_a.Text = Convert.ToString(a);
-                b = 10;
-                textBox_b.Text = Convert.ToString(b);
-                h = 0.5;
-                textBox_h.Text = Convert.ToString(h);
+                settings.a = -10;
+                textBox_a.Text = Convert.ToString(settings.a);
+                settings.b = 10;
+                textBox_b.Text = Convert.ToString(settings.b);
+                settings.h = 0.5;
+                textBox_h.Text = Convert.ToString(settings.h);
 
             }
         }
@@ -354,8 +296,11 @@ namespace KursovayaV4
                 Application.Exit();
             }
         }
+        private void загрузитьПоследниеНастройкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadSettings();
+        }
 
-        
 
         //Настройка графика
         private void comboBox_color_SelectedIndexChanged(object sender, EventArgs e)
@@ -367,7 +312,7 @@ namespace KursovayaV4
             3 - yellow
             4 - black
              */
-            chart_demo.Series[0].Color = Color.FromName(Convert.ToString(comboBox_color.SelectedItem));
+            chart_demo.Series[0].Color = Color.FromName(comboBox_color.SelectedItem.ToString());
         }
 
         private void numericUpDown_borderWidth_ValueChanged(object sender, EventArgs e)
@@ -377,9 +322,9 @@ namespace KursovayaV4
 
         private void comboBox_chartType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string _temp = comboBox_chartType.SelectedItem.ToString();
-            chart_demo.Series[0].ChartType = (SeriesChartType)Enum.Parse(typeof(SeriesChartType), _temp);
+            chart_demo.Series[0].ChartType = (SeriesChartType)Enum.Parse(typeof(SeriesChartType), comboBox_chartType.SelectedItem.ToString());
         }
+
         private void comboBox_chartChoose_SelectedIndexChanged(object sender, EventArgs e)
         {
             int u = comboBox_chartChoose.SelectedIndex;
@@ -393,18 +338,19 @@ namespace KursovayaV4
         {
             /*
              0 - sin(x)
-             1 - cos(x)
-             2 - tan(x)
+             1 - 1/x
+             2 - x**2
              */
 
             if(comboBox_chartChoose.SelectedIndex !=-1)
             {
-                int u = comboBox_chartChoose.SelectedIndex;
-                string _temp = comboBox_chartType.SelectedItem.ToString();
+                int u = comboBox_chartChoose.SelectedIndex;  //Выбранный пользователем график
 
-                this.chart.Series[u].Color = Color.FromName(Convert.ToString(comboBox_color.SelectedItem));
-                this.chart.Series[u].BorderWidth = Convert.ToInt32(numericUpDown_borderWidth.Value);
-                this.chart.Series[u].ChartType = (SeriesChartType)Enum.Parse(typeof(SeriesChartType), _temp);
+                this.chart.Series[u].Color = Color.FromName(comboBox_color.SelectedItem.ToString()); //Преобразование цвета выбранного графика
+
+                this.chart.Series[u].BorderWidth = Convert.ToInt32(numericUpDown_borderWidth.Value); //Преобразование размера линии графика
+
+                this.chart.Series[u].ChartType = (SeriesChartType)Enum.Parse(typeof(SeriesChartType), comboBox_chartType.SelectedItem.ToString()); //Преобразование типа графика
 
             }
         }
