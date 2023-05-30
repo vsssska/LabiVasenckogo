@@ -22,8 +22,7 @@ namespace KursovayaV4
         private static int quant_nodes = 4;   //Количество используемых узлов
         private static int quant_formuls = 3;    //Количество формул
         
-        private double[,,] z = new double[integral_methods, quant_nodes, quant_formuls]; //Массив, который хранит данные для 1 задания
-
+        private double[,,] z = new double[quant_nodes, integral_methods + 1, quant_formuls]; //Массив, который хранит данные для 1 задания
 
 
         //Общие настройки
@@ -88,7 +87,7 @@ namespace KursovayaV4
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            textBox_dataCheb.Text = string.Empty;
+            textBox_dataCalc.Text = string.Empty;
             loadSettings();
 
             comboBox_chartType.Items.Add("Point");
@@ -115,29 +114,31 @@ namespace KursovayaV4
                 settings.eps= Convert.ToDouble(textBox_epsilon.Text);
 
                 //Рассчет по методу Чебышева по узлам от 2 до 5
-                textBox_dataCheb.Text = string.Empty;
-                
+                textBox_dataCalc.Text = string.Empty;
 
-                x = settings.a1;
                 for (int i = 0; i < quant_formuls; i++)
                 {
-                    textBox_dataCheb.Text = "=========Для функции _/sin(x)dx===============" + Environment.NewLine +
-                        "n\tChebishev\t\tGauss";
+                    if (i == 0)
+                        textBox_dataCalc.Text += "=========Для функции _/sin(x)dx===============" + Environment.NewLine +
+                        "n\tChebishev\t\tGauss" + Environment.NewLine;
+
+                    if (i == 1)
+                        textBox_dataCalc.Text += "=========Для функции _/x^3===============" + Environment.NewLine +
+                        "n\tChebishev\t\tGauss" + Environment.NewLine;
+
+                    if (i == 2)
+                        textBox_dataCalc.Text += "=========Для функции _/exp(x^3)===============" + Environment.NewLine +
+                        "n\tChebishev\t\tGauss" + Environment.NewLine;
 
                     for (int j = 0; j < quant_nodes; j++)
                     {
-                        x = Functions.chebishev(settings.a1, settings.b1, settings.eps, j, i);
-                        
+                        z[j, 0, i] = Functions.chebishev(settings.a1, settings.b1, settings.eps, j, i);
+                        z[j, 1, i] = Functions.gauss(settings.a1, settings.b1, settings.eps, j, i);
+
+                        textBox_dataCalc.Text += $"{j+2}\t{z[j, 0, i]}\t{z[j, 1, i]}" + Environment.NewLine;
                     }
 
-                    Console.WriteLine($"chebishev= {x} ");
                 }
-
-                //Рассчет по методу Гаусса по узлам от 2 до 5
-                textBox_dataGauss.Text = string.Empty;
-                textBox_dataGauss.Text = "Для функции _/sin(x)dx" + Environment.NewLine;
-
-                x = settings.a1;
                 
             }
             catch (Exception ex)
@@ -153,17 +154,8 @@ namespace KursovayaV4
 
         private void button_clear_Click(object sender, EventArgs e)
         {
-            textBox_dataCheb.Text = string.Empty;
-            textBox_dataGauss.Text = string.Empty;
-            textBox_accuracy.Text = string.Empty;
+            textBox_dataCalc.Text = string.Empty;
         }
-
-        private void button_accuracy_Click(object sender, EventArgs e)
-        {
-            textBox_accuracy.Text = string.Empty;
-            
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             try
@@ -175,9 +167,38 @@ namespace KursovayaV4
                 {
                     using (StreamWriter sw = new StreamWriter(fs))
                     {
-                        sw.WriteLine("");
+                        //Перемещаем курсор в конец файла, чтобы сохранить предыдущие расчеты
+                        sw.BaseStream.Seek(0, SeekOrigin.End);
+
+                        //Запись времени запуска вычислений
+                        sw.WriteLine($"======={DateTime.Now.ToString("HH:mm:sss")}=========" + Environment.NewLine);
+
+                        //Запись изначальных данных
+                        sw.WriteLine($"a= {settings.a1}" + Environment.NewLine +
+                            $"b= {settings.b1}" + Environment.NewLine +
+                            $"eps= {settings.eps}" + Environment.NewLine);
+
+                        for (int i = 0; i < quant_formuls; i++)
+                        {
+                            if (i == 0)
+                                sw.WriteLine("=========Для функции _/sin(x)dx===============" + Environment.NewLine +
+                                "n\tChebishev\t\tGauss" + Environment.NewLine);
+
+                            if (i == 1)
+                                sw.WriteLine("=========Для функции _/x^3===============" + Environment.NewLine +
+                                "n\tChebishev\t\tGauss" + Environment.NewLine);
+
+                            if (i == 2)
+                                sw.WriteLine("=========Для функции _/exp(x^3)===============" + Environment.NewLine +
+                                "n\tChebishev\t\tGauss" + Environment.NewLine);
+
+                            for (int j = 0; j < quant_nodes; j++)
+                            {
+                                sw.WriteLine($"{j + 2}\t{z[j, 0, i]}\t{z[j, 1, i]}" + Environment.NewLine);
+                            }
 
 
+                        }
 
                     }    
                 }

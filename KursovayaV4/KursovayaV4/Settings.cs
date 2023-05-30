@@ -37,6 +37,7 @@ namespace KursovayaV4
                     settings.h = reader.ReadDouble();
                     settings.a1= reader.ReadDouble();
                     settings.b1= reader.ReadDouble();
+                    settings.eps = reader.ReadDouble();
 
                     reader.Close();
                 }
@@ -63,6 +64,7 @@ namespace KursovayaV4
                 settings.h = 0.1;
                 settings.a1 = -10;
                 settings.b1 = 10;
+                settings.eps = 0.001;
             }
                 
 
@@ -95,6 +97,7 @@ namespace KursovayaV4
                 writer.Write(h);
                 writer.Write(a1);
                 writer.Write(b1);
+                writer.Write(eps);
 
                 writer.Close();
             }
@@ -118,6 +121,7 @@ namespace KursovayaV4
 
         public double a1 { get; set; } //начальная точка для вычислений
         public double b1 { get; set; } //конечная точка для вычислений
+        public double eps { get; set; } //точность метода
 
     }
 }
