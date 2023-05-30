@@ -10,6 +10,7 @@ namespace KursovayaV4
 {
     public class Settings
     {
+        //Метод загрузки настроек
         public static Settings Load()
         {
             Settings settings= new Settings();
@@ -41,7 +42,7 @@ namespace KursovayaV4
                 }
             }
 
-            else
+            else //Параметры "По умолчанию"
             {
                 settings = new Settings();
 
@@ -68,11 +69,12 @@ namespace KursovayaV4
             return settings;
         }
 
+        //Метод сохранения настроек
         public void Save()
         {
             string filename = Globals.SettingsFile;
 
-            if(File.Exists(filename)) File.Delete(filename);
+            if(File.Exists(filename)) File.Delete(filename); //Удаление прошлых сохранений
 
             using (BinaryWriter writer = new BinaryWriter(File.Open(filename, FileMode.Create)))
             {
@@ -98,24 +100,24 @@ namespace KursovayaV4
             }
         }
 
-        public string ColorOfSin { get; set; }
-        public string ColorOfCos { get; set; }
-        public string ColorOfTan { get; set; }
+        public string ColorOfSin { get; set; } //цвет синус графика
+        public string ColorOfCos { get; set; } //цвет косинуса графика
+        public string ColorOfTan { get; set; } //цвет тангенса графика
 
-        public int LineWidthSin { get; set; }
-        public int LineWidthCos { get; set; }
-        public int LineWidthTan { get; set; }
+        public int LineWidthSin { get; set; } //толщина синус графика
+        public int LineWidthCos { get; set; } //толщина косинуса графика
+        public int LineWidthTan { get; set; } //толщина тангенса графика
 
-        public string ChartTypeSin { get; set; }
-        public string ChartTypeCos { get; set; }
-        public string ChartTypeTan { get; set; }
+        public string ChartTypeSin { get; set; } //тип синус графика
+        public string ChartTypeCos { get; set; } //тип косинуса графика
+        public string ChartTypeTan { get; set; } //тип тангенса графика
 
-        public double a { get; set; }
-        public double b { get; set; }
-        public double h { get; set; }
+        public double a { get; set; } //начальная точка для графика
+        public double b { get; set; } //конечная точка для графика
+        public double h { get; set; } //шаг для графика
 
-        public double a1 { get; set; }
-        public double b1 { get; set; }
-        
+        public double a1 { get; set; } //начальная точка для вычислений
+        public double b1 { get; set; } //конечная точка для вычислений
+
     }
 }

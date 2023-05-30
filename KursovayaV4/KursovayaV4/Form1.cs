@@ -354,8 +354,11 @@ namespace KursovayaV4
                 Application.Exit();
             }
         }
+        private void загрузитьПоследниеНастройкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadSettings();
+        }
 
-        
 
         //Настройка графика
         private void comboBox_color_SelectedIndexChanged(object sender, EventArgs e)

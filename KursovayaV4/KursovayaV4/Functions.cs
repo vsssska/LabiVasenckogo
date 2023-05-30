@@ -41,6 +41,8 @@ namespace KursovayaV4
         {
             return Math.Pow(Math.Sin(x), 2);  
         }
+
+        //Метод Чебышева
         public static double chebishev(double a, double b, int n, int ni)
         {
             double s;
@@ -52,7 +54,7 @@ namespace KursovayaV4
             return s;
         }
 
-
+        //Метод Гаусса
         public static double gauss(double a, double b, int n, int ni)
         {
             double s;

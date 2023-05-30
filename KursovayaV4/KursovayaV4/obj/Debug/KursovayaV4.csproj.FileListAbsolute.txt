@@ -9,3 +9,14 @@ D:\VisualStudioRepos\Labs\TechnologyProg\KursovayaV4\KursovayaV4\obj\Debug\Kurso
 D:\VisualStudioRepos\Labs\TechnologyProg\KursovayaV4\KursovayaV4\obj\Debug\KursovayaV4.csproj.CoreCompileInputs.cache
 D:\VisualStudioRepos\Labs\TechnologyProg\KursovayaV4\KursovayaV4\obj\Debug\KursovayaV4.exe
 D:\VisualStudioRepos\Labs\TechnologyProg\KursovayaV4\KursovayaV4\obj\Debug\KursovayaV4.pdb
+C:\Users\2Tyan\Source\Repos\LabiVasenckogo\KursovayaV4\KursovayaV4\bin\Debug\KursovayaV4.exe.config
+C:\Users\2Tyan\Source\Repos\LabiVasenckogo\KursovayaV4\KursovayaV4\bin\Debug\KursovayaV4.exe
+C:\Users\2Tyan\Source\Repos\LabiVasenckogo\KursovayaV4\KursovayaV4\bin\Debug\KursovayaV4.pdb
+C:\Users\2Tyan\Source\Repos\LabiVasenckogo\KursovayaV4\KursovayaV4\obj\Debug\KursovayaV4.csproj.AssemblyReference.cache
+C:\Users\2Tyan\Source\Repos\LabiVasenckogo\KursovayaV4\KursovayaV4\obj\Debug\KursovayaV4.csproj.SuggestedBindingRedirects.cache
+C:\Users\2Tyan\Source\Repos\LabiVasenckogo\KursovayaV4\KursovayaV4\obj\Debug\KursovayaV4.Form1.resources
+C:\Users\2Tyan\Source\Repos\LabiVasenckogo\KursovayaV4\KursovayaV4\obj\Debug\KursovayaV4.Properties.Resources.resources
+C:\Users\2Tyan\Source\Repos\LabiVasenckogo\KursovayaV4\KursovayaV4\obj\Debug\KursovayaV4.csproj.GenerateResource.cache
+C:\Users\2Tyan\Source\Repos\LabiVasenckogo\KursovayaV4\KursovayaV4\obj\Debug\KursovayaV4.csproj.CoreCompileInputs.cache
+C:\Users\2Tyan\Source\Repos\LabiVasenckogo\KursovayaV4\KursovayaV4\obj\Debug\KursovayaV4.exe
+C:\Users\2Tyan\Source\Repos\LabiVasenckogo\KursovayaV4\KursovayaV4\obj\Debug\KursovayaV4.pdb
