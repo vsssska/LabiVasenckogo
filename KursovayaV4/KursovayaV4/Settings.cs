@@ -20,17 +20,17 @@ namespace KursovayaV4
             {
                 using(BinaryReader reader = new BinaryReader(File.Open(filename, FileMode.Open)))
                 {
-                    settings.ColorOfSin = reader.ReadString();
-                    settings.ColorOfCos = reader.ReadString();
-                    settings.ColorOfTan = reader.ReadString();
+                    settings.ColorOfFirstfunc  = reader.ReadString();
+                    settings.ColorOfSecondfunc = reader.ReadString();
+                    settings.ColorOfThirdfunc  = reader.ReadString();
 
-                    settings.LineWidthSin = reader.ReadInt32();
-                    settings.LineWidthCos = reader.ReadInt32();
-                    settings.LineWidthTan = reader.ReadInt32();
+                    settings.LineWidthFirstfunc  = reader.ReadInt32();
+                    settings.LineWidthSecondfunc = reader.ReadInt32();
+                    settings.LineWidthThirdfunc  = reader.ReadInt32();
 
-                    settings.ChartTypeSin = reader.ReadString();
-                    settings.ChartTypeCos = reader.ReadString();
-                    settings.ChartTypeTan = reader.ReadString();
+                    settings.ChartTypeFirstfunc  = reader.ReadString();
+                    settings.ChartTypeSecondfunc = reader.ReadString();
+                    settings.ChartTypeThirdfunc  = reader.ReadString();
 
                     settings.a = reader.ReadDouble();
                     settings.b = reader.ReadDouble();
@@ -47,17 +47,17 @@ namespace KursovayaV4
             {
                 settings = new Settings();
 
-                settings.ColorOfSin = "blue";
-                settings.ColorOfCos = "red";
-                settings.ColorOfTan = "green";
+                settings.ColorOfFirstfunc = "blue";
+                settings.ColorOfSecondfunc = "red";
+                settings.ColorOfThirdfunc = "green";
 
-                settings.LineWidthSin = 3;
-                settings.LineWidthCos = 3;
-                settings.LineWidthTan = 3;
+                settings.LineWidthFirstfunc = 3;
+                settings.LineWidthSecondfunc = 3;
+                settings.LineWidthThirdfunc = 3;
 
-                settings.ChartTypeSin = "Spline";
-                settings.ChartTypeCos = "Spline";
-                settings.ChartTypeTan = "Spline";
+                settings.ChartTypeFirstfunc = "Spline";
+                settings.ChartTypeSecondfunc = "Spline";
+                settings.ChartTypeThirdfunc = "Spline";
 
                 settings.a = -10;
                 settings.b = 10;
@@ -80,17 +80,17 @@ namespace KursovayaV4
 
             using (BinaryWriter writer = new BinaryWriter(File.Open(filename, FileMode.Create)))
             {
-                writer.Write(ColorOfSin);
-                writer.Write(ColorOfCos);
-                writer.Write(ColorOfTan);
+                writer.Write(ColorOfFirstfunc);
+                writer.Write(ColorOfSecondfunc);
+                writer.Write(ColorOfThirdfunc);
 
-                writer.Write(LineWidthSin);
-                writer.Write(LineWidthCos);
-                writer.Write(LineWidthTan);
+                writer.Write(LineWidthFirstfunc);
+                writer.Write(LineWidthSecondfunc);
+                writer.Write(LineWidthThirdfunc);
 
-                writer.Write(ChartTypeSin);
-                writer.Write(ChartTypeCos);
-                writer.Write(ChartTypeTan);
+                writer.Write(ChartTypeFirstfunc);
+                writer.Write(ChartTypeSecondfunc);
+                writer.Write(ChartTypeThirdfunc);
 
                 writer.Write(a);
                 writer.Write(b);
@@ -103,17 +103,17 @@ namespace KursovayaV4
             }
         }
 
-        public string ColorOfSin { get; set; } //цвет синус графика
-        public string ColorOfCos { get; set; } //цвет косинуса графика
-        public string ColorOfTan { get; set; } //цвет тангенса графика
+        public string ColorOfFirstfunc { get; set; } //цвет синус графика
+        public string ColorOfSecondfunc { get; set; } //цвет косинуса графика
+        public string ColorOfThirdfunc { get; set; } //цвет тангенса графика
 
-        public int LineWidthSin { get; set; } //толщина синус графика
-        public int LineWidthCos { get; set; } //толщина косинуса графика
-        public int LineWidthTan { get; set; } //толщина тангенса графика
+        public int LineWidthFirstfunc { get; set; } //толщина синус графика
+        public int LineWidthSecondfunc { get; set; } //толщина косинуса графика
+        public int LineWidthThirdfunc { get; set; } //толщина тангенса графика
 
-        public string ChartTypeSin { get; set; } //тип синус графика
-        public string ChartTypeCos { get; set; } //тип косинуса графика
-        public string ChartTypeTan { get; set; } //тип тангенса графика
+        public string ChartTypeFirstfunc { get; set; } //тип синус графика
+        public string ChartTypeSecondfunc { get; set; } //тип косинуса графика
+        public string ChartTypeThirdfunc { get; set; } //тип тангенса графика
 
         public double a { get; set; } //начальная точка для графика
         public double b { get; set; } //конечная точка для графика

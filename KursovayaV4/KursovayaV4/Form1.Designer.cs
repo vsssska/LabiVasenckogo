@@ -28,20 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.построитьГрафикToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.очиститьГрафикToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьНастройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.загрузитьПоследниеНастройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,9 +52,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.checkBox_tan = new System.Windows.Forms.CheckBox();
-            this.checkBox_sin = new System.Windows.Forms.CheckBox();
-            this.checkBox_cos = new System.Windows.Forms.CheckBox();
+            this.checkedListBox_funcs = new System.Windows.Forms.CheckedListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -76,12 +72,18 @@
             this.chart_demo = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.checkedListBox_nodes = new System.Windows.Forms.CheckedListBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.checkedListBox_methods = new System.Windows.Forms.CheckedListBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.checkedListBox_choosedFuncs = new System.Windows.Forms.CheckedListBox();
+            this.textBox_epsilon = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.button_save = new System.Windows.Forms.Button();
             this.button_clear = new System.Windows.Forms.Button();
             this.button_Calc = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.textBox_epsilon = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.textBox_b1 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -103,8 +105,11 @@
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_demo)).BeginInit();
             this.tabPage2.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -117,43 +122,43 @@
             // 
             // chart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            legend1.Title = "Цвета графиков";
-            this.chart.Legends.Add(legend1);
+            chartArea5.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea5);
+            legend3.Name = "Legend1";
+            legend3.Title = "Цвета графиков";
+            this.chart.Legends.Add(legend3);
             this.chart.Location = new System.Drawing.Point(6, 27);
             this.chart.Name = "chart";
-            series1.BorderWidth = 3;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Color = System.Drawing.Color.Blue;
-            series1.Legend = "Legend1";
-            series1.LegendText = "sin";
-            series1.Name = "Series1";
-            series2.BorderWidth = 3;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Color = System.Drawing.Color.Red;
-            series2.Legend = "Legend1";
-            series2.LegendText = "cos";
-            series2.Name = "Series2";
-            series3.BorderWidth = 3;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Color = System.Drawing.Color.Green;
-            series3.Legend = "Legend1";
-            series3.Name = "tan";
-            this.chart.Series.Add(series1);
-            this.chart.Series.Add(series2);
-            this.chart.Series.Add(series3);
-            this.chart.Size = new System.Drawing.Size(800, 517);
+            series9.BorderWidth = 3;
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series9.Color = System.Drawing.Color.Blue;
+            series9.Legend = "Legend1";
+            series9.LegendText = "sin";
+            series9.Name = "Series1";
+            series10.BorderWidth = 3;
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series10.Color = System.Drawing.Color.Red;
+            series10.Legend = "Legend1";
+            series10.LegendText = "cos";
+            series10.Name = "Series2";
+            series11.BorderWidth = 3;
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series11.Color = System.Drawing.Color.Green;
+            series11.Legend = "Legend1";
+            series11.Name = "tan";
+            this.chart.Series.Add(series9);
+            this.chart.Series.Add(series10);
+            this.chart.Series.Add(series11);
+            this.chart.Size = new System.Drawing.Size(800, 511);
             this.chart.TabIndex = 1;
             this.chart.Text = "chart1";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            title1.Name = "Title1";
-            title1.Text = "График функций";
-            this.chart.Titles.Add(title1);
+            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            title3.Name = "Title1";
+            title3.Text = "График функций";
+            this.chart.Titles.Add(title3);
             // 
             // menuStrip2
             // 
@@ -169,27 +174,11 @@
             // менюToolStripMenuItem
             // 
             this.менюToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.построитьГрафикToolStripMenuItem,
-            this.очиститьГрафикToolStripMenuItem,
             this.сохранитьНастройкиToolStripMenuItem,
             this.загрузитьПоследниеНастройкиToolStripMenuItem});
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
             this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.менюToolStripMenuItem.Text = "Меню";
-            // 
-            // построитьГрафикToolStripMenuItem
-            // 
-            this.построитьГрафикToolStripMenuItem.Name = "построитьГрафикToolStripMenuItem";
-            this.построитьГрафикToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.построитьГрафикToolStripMenuItem.Text = "Построить график";
-            this.построитьГрафикToolStripMenuItem.Click += new System.EventHandler(this.построитьГрафикToolStripMenuItem_Click);
-            // 
-            // очиститьГрафикToolStripMenuItem
-            // 
-            this.очиститьГрафикToolStripMenuItem.Name = "очиститьГрафикToolStripMenuItem";
-            this.очиститьГрафикToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.очиститьГрафикToolStripMenuItem.Text = "Очистить график";
-            this.очиститьГрафикToolStripMenuItem.Click += new System.EventHandler(this.очиститьГрафикToolStripMenuItem_Click);
             // 
             // сохранитьНастройкиToolStripMenuItem
             // 
@@ -232,7 +221,7 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox2.Location = new System.Drawing.Point(824, 111);
+            this.groupBox2.Location = new System.Drawing.Point(826, 102);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(263, 227);
             this.groupBox2.TabIndex = 4;
@@ -289,46 +278,27 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.checkBox_tan);
-            this.groupBox3.Controls.Add(this.checkBox_sin);
-            this.groupBox3.Controls.Add(this.checkBox_cos);
+            this.groupBox3.Controls.Add(this.checkedListBox_funcs);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox3.Location = new System.Drawing.Point(824, 344);
+            this.groupBox3.Location = new System.Drawing.Point(825, 335);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(263, 136);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Функции";
             // 
-            // checkBox_tan
+            // checkedListBox_funcs
             // 
-            this.checkBox_tan.AutoSize = true;
-            this.checkBox_tan.Location = new System.Drawing.Point(24, 96);
-            this.checkBox_tan.Name = "checkBox_tan";
-            this.checkBox_tan.Size = new System.Drawing.Size(111, 28);
-            this.checkBox_tan.TabIndex = 2;
-            this.checkBox_tan.Text = "y = sqrt(x)";
-            this.checkBox_tan.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_sin
-            // 
-            this.checkBox_sin.AutoSize = true;
-            this.checkBox_sin.Location = new System.Drawing.Point(24, 28);
-            this.checkBox_sin.Name = "checkBox_sin";
-            this.checkBox_sin.Size = new System.Drawing.Size(105, 28);
-            this.checkBox_sin.TabIndex = 1;
-            this.checkBox_sin.Text = "y = sin(x)";
-            this.checkBox_sin.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_cos
-            // 
-            this.checkBox_cos.AutoSize = true;
-            this.checkBox_cos.Location = new System.Drawing.Point(24, 62);
-            this.checkBox_cos.Name = "checkBox_cos";
-            this.checkBox_cos.Size = new System.Drawing.Size(88, 28);
-            this.checkBox_cos.TabIndex = 0;
-            this.checkBox_cos.Text = "y = x^3";
-            this.checkBox_cos.UseVisualStyleBackColor = true;
+            this.checkedListBox_funcs.FormattingEnabled = true;
+            this.checkedListBox_funcs.Items.AddRange(new object[] {
+            "y = sin(x)",
+            "y = x^3",
+            "y = sqrt(x)"});
+            this.checkedListBox_funcs.Location = new System.Drawing.Point(5, 28);
+            this.checkedListBox_funcs.Name = "checkedListBox_funcs";
+            this.checkedListBox_funcs.Size = new System.Drawing.Size(252, 100);
+            this.checkedListBox_funcs.TabIndex = 6;
+            this.checkedListBox_funcs.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox_funcs_ItemCheck);
             // 
             // tabControl1
             // 
@@ -441,9 +411,9 @@
             this.comboBox_chartChoose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox_chartChoose.FormattingEnabled = true;
             this.comboBox_chartChoose.Items.AddRange(new object[] {
-            "Sin",
-            "1/x",
-            "x^2"});
+            "SinX",
+            "x^3",
+            "sqrt(x)"});
             this.comboBox_chartChoose.Location = new System.Drawing.Point(56, 80);
             this.comboBox_chartChoose.Name = "comboBox_chartChoose";
             this.comboBox_chartChoose.Size = new System.Drawing.Size(207, 33);
@@ -531,22 +501,21 @@
             // 
             // chart_demo
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart_demo.ChartAreas.Add(chartArea2);
+            chartArea6.Name = "ChartArea1";
+            this.chart_demo.ChartAreas.Add(chartArea6);
             this.chart_demo.Location = new System.Drawing.Point(6, 28);
             this.chart_demo.Name = "chart_demo";
-            series4.BorderWidth = 3;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Name = "Series1";
-            this.chart_demo.Series.Add(series4);
+            series12.BorderWidth = 3;
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series12.Name = "Series1";
+            this.chart_demo.Series.Add(series12);
             this.chart_demo.Size = new System.Drawing.Size(659, 361);
             this.chart_demo.TabIndex = 3;
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label4);
-            this.tabPage2.Controls.Add(this.groupBox5);
             this.tabPage2.Controls.Add(this.groupBox4);
             this.tabPage2.Controls.Add(this.textBox_dataCalc);
             this.tabPage2.Location = new System.Drawing.Point(4, 33);
@@ -566,21 +535,116 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Результаты вычислений";
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.groupBox11);
+            this.groupBox4.Controls.Add(this.groupBox10);
+            this.groupBox4.Controls.Add(this.groupBox9);
+            this.groupBox4.Controls.Add(this.textBox_epsilon);
+            this.groupBox4.Controls.Add(this.groupBox5);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.textBox_b1);
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.textBox_a1);
+            this.groupBox4.Location = new System.Drawing.Point(588, 20);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(500, 530);
+            this.groupBox4.TabIndex = 6;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Параметры";
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.checkedListBox_nodes);
+            this.groupBox11.Location = new System.Drawing.Point(270, 27);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(224, 190);
+            this.groupBox11.TabIndex = 12;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Узлы";
+            // 
+            // checkedListBox_nodes
+            // 
+            this.checkedListBox_nodes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkedListBox_nodes.FormattingEnabled = true;
+            this.checkedListBox_nodes.Items.AddRange(new object[] {
+            "2 узла",
+            "3 узла",
+            "4 узла",
+            "5 узлов"});
+            this.checkedListBox_nodes.Location = new System.Drawing.Point(35, 48);
+            this.checkedListBox_nodes.Name = "checkedListBox_nodes";
+            this.checkedListBox_nodes.Size = new System.Drawing.Size(158, 100);
+            this.checkedListBox_nodes.TabIndex = 4;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.checkedListBox_methods);
+            this.groupBox10.Location = new System.Drawing.Point(6, 223);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(258, 164);
+            this.groupBox10.TabIndex = 11;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Выбор метода";
+            // 
+            // checkedListBox_methods
+            // 
+            this.checkedListBox_methods.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkedListBox_methods.FormattingEnabled = true;
+            this.checkedListBox_methods.Items.AddRange(new object[] {
+            "Метод Чебышева",
+            "Метод Гаусса"});
+            this.checkedListBox_methods.Location = new System.Drawing.Point(36, 64);
+            this.checkedListBox_methods.Name = "checkedListBox_methods";
+            this.checkedListBox_methods.Size = new System.Drawing.Size(203, 52);
+            this.checkedListBox_methods.TabIndex = 5;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.checkedListBox_choosedFuncs);
+            this.groupBox9.Location = new System.Drawing.Point(6, 393);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(258, 131);
+            this.groupBox9.TabIndex = 10;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Выбор функции";
+            // 
+            // checkedListBox_choosedFuncs
+            // 
+            this.checkedListBox_choosedFuncs.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkedListBox_choosedFuncs.FormattingEnabled = true;
+            this.checkedListBox_choosedFuncs.Items.AddRange(new object[] {
+            "y= sin(x)",
+            "y= x^3",
+            "y= sqrt(x)"});
+            this.checkedListBox_choosedFuncs.Location = new System.Drawing.Point(36, 40);
+            this.checkedListBox_choosedFuncs.Name = "checkedListBox_choosedFuncs";
+            this.checkedListBox_choosedFuncs.Size = new System.Drawing.Size(158, 76);
+            this.checkedListBox_choosedFuncs.TabIndex = 6;
+            // 
+            // textBox_epsilon
+            // 
+            this.textBox_epsilon.Location = new System.Drawing.Point(6, 178);
+            this.textBox_epsilon.Name = "textBox_epsilon";
+            this.textBox_epsilon.Size = new System.Drawing.Size(258, 29);
+            this.textBox_epsilon.TabIndex = 9;
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.button_save);
             this.groupBox5.Controls.Add(this.button_clear);
             this.groupBox5.Controls.Add(this.button_Calc);
-            this.groupBox5.Location = new System.Drawing.Point(868, 257);
+            this.groupBox5.Location = new System.Drawing.Point(270, 223);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(224, 293);
+            this.groupBox5.Size = new System.Drawing.Size(224, 301);
             this.groupBox5.TabIndex = 7;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Управление";
             // 
             // button_save
             // 
-            this.button_save.Location = new System.Drawing.Point(36, 157);
+            this.button_save.Location = new System.Drawing.Point(35, 153);
             this.button_save.Name = "button_save";
             this.button_save.Size = new System.Drawing.Size(138, 69);
             this.button_save.TabIndex = 3;
@@ -590,9 +654,9 @@
             // 
             // button_clear
             // 
-            this.button_clear.Location = new System.Drawing.Point(19, 255);
+            this.button_clear.Location = new System.Drawing.Point(6, 263);
             this.button_clear.Name = "button_clear";
-            this.button_clear.Size = new System.Drawing.Size(186, 32);
+            this.button_clear.Size = new System.Drawing.Size(212, 32);
             this.button_clear.TabIndex = 1;
             this.button_clear.Text = "Очистить поля";
             this.button_clear.UseVisualStyleBackColor = true;
@@ -600,7 +664,7 @@
             // 
             // button_Calc
             // 
-            this.button_Calc.Location = new System.Drawing.Point(36, 28);
+            this.button_Calc.Location = new System.Drawing.Point(35, 42);
             this.button_Calc.Name = "button_Calc";
             this.button_Calc.Size = new System.Drawing.Size(138, 48);
             this.button_Calc.TabIndex = 0;
@@ -608,32 +672,10 @@
             this.button_Calc.UseVisualStyleBackColor = true;
             this.button_Calc.Click += new System.EventHandler(this.button_Calc_Click);
             // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.textBox_epsilon);
-            this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Controls.Add(this.textBox_b1);
-            this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Controls.Add(this.label6);
-            this.groupBox4.Controls.Add(this.textBox_a1);
-            this.groupBox4.Location = new System.Drawing.Point(868, 30);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(224, 180);
-            this.groupBox4.TabIndex = 6;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Параметры";
-            // 
-            // textBox_epsilon
-            // 
-            this.textBox_epsilon.Location = new System.Drawing.Point(24, 135);
-            this.textBox_epsilon.Name = "textBox_epsilon";
-            this.textBox_epsilon.Size = new System.Drawing.Size(181, 29);
-            this.textBox_epsilon.TabIndex = 9;
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(20, 108);
+            this.label14.Location = new System.Drawing.Point(2, 151);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(138, 24);
             this.label14.TabIndex = 8;
@@ -641,15 +683,15 @@
             // 
             // textBox_b1
             // 
-            this.textBox_b1.Location = new System.Drawing.Point(105, 76);
+            this.textBox_b1.Location = new System.Drawing.Point(105, 100);
             this.textBox_b1.Name = "textBox_b1";
-            this.textBox_b1.Size = new System.Drawing.Size(100, 29);
+            this.textBox_b1.Size = new System.Drawing.Size(159, 29);
             this.textBox_b1.TabIndex = 7;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 76);
+            this.label7.Location = new System.Drawing.Point(2, 103);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(87, 24);
             this.label7.TabIndex = 6;
@@ -658,7 +700,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(20, 36);
+            this.label6.Location = new System.Drawing.Point(2, 57);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 24);
             this.label6.TabIndex = 5;
@@ -666,9 +708,9 @@
             // 
             // textBox_a1
             // 
-            this.textBox_a1.Location = new System.Drawing.Point(105, 36);
+            this.textBox_a1.Location = new System.Drawing.Point(105, 54);
             this.textBox_a1.Name = "textBox_a1";
-            this.textBox_a1.Size = new System.Drawing.Size(100, 29);
+            this.textBox_a1.Size = new System.Drawing.Size(159, 29);
             this.textBox_a1.TabIndex = 4;
             // 
             // textBox_dataCalc
@@ -676,7 +718,9 @@
             this.textBox_dataCalc.Location = new System.Drawing.Point(6, 30);
             this.textBox_dataCalc.Multiline = true;
             this.textBox_dataCalc.Name = "textBox_dataCalc";
-            this.textBox_dataCalc.Size = new System.Drawing.Size(856, 520);
+            this.textBox_dataCalc.ReadOnly = true;
+            this.textBox_dataCalc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_dataCalc.Size = new System.Drawing.Size(576, 520);
             this.textBox_dataCalc.TabIndex = 0;
             // 
             // Form1
@@ -698,7 +742,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
@@ -710,9 +753,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart_demo)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -724,8 +770,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart;
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem менюToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem построитьГрафикToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem очиститьГрафикToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -736,9 +780,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.CheckBox checkBox_sin;
-        private System.Windows.Forms.CheckBox checkBox_cos;
-        private System.Windows.Forms.CheckBox checkBox_tan;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -773,6 +814,13 @@
         private System.Windows.Forms.TextBox textBox_epsilon;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckedListBox checkedListBox_funcs;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.CheckedListBox checkedListBox_nodes;
+        private System.Windows.Forms.CheckedListBox checkedListBox_methods;
+        private System.Windows.Forms.CheckedListBox checkedListBox_choosedFuncs;
     }
 }
 

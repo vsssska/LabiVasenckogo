@@ -11,19 +11,20 @@ namespace KursovayaV4
 {
     public partial class Form1 : Form
     {
-        private double x, y; // х у для графиков
+        private double x; // х для графиков
 
         private string logsDirect = Directory.GetCurrentDirectory() + "/logs"; //Папка, в которой хранятся файлы с данными о вычислениях
         private string logsName = DateTime.Now.ToString("yyyyMMdd") + ".txt"; //Имя файла в которой хранятся данные о вычислениях
 
         Settings settings = new Settings();
 
-        private static int integral_methods = 2; //Количество методов
-        private static int quant_nodes = 4;   //Количество используемых узлов
-        private static int quant_formuls = 3;    //Количество формул
+        private static int integral_methods; //Количество методов
+        private static int quant_nodes;      //Количество используемых узлов
+        private static int quant_formuls;    //Количество формул
         
-        private double[,,] z = new double[quant_nodes, integral_methods + 1, quant_formuls]; //Массив, который хранит данные для 1 задания
-
+        
+        public double[,,] z; //Массив хранения данных о расчетах с помощью различных методов
+        
 
         //Общие настройки
         public Form1()
@@ -41,18 +42,18 @@ namespace KursovayaV4
                 settings.b1 = Convert.ToDouble(textBox_b1.Text);
                 settings.eps = Convert.ToDouble(textBox_epsilon.Text);
 
-                settings.ColorOfSin = typeof(Color).GetProperty("Name").GetValue(this.chart.Series[0].Color).ToString();
-                settings.ColorOfCos = typeof(Color).GetProperty("Name").GetValue(this.chart.Series[1].Color).ToString();
-                settings.ColorOfTan = typeof(Color).GetProperty("Name").GetValue(this.chart.Series[2].Color).ToString();
+                settings.ColorOfFirstfunc  = typeof(Color).GetProperty("Name").GetValue(this.chart.Series[0].Color).ToString();
+                settings.ColorOfSecondfunc = typeof(Color).GetProperty("Name").GetValue(this.chart.Series[1].Color).ToString();
+                settings.ColorOfThirdfunc  = typeof(Color).GetProperty("Name").GetValue(this.chart.Series[2].Color).ToString();
 
 
-                settings.LineWidthSin = this.chart.Series[0].BorderWidth;
-                settings.LineWidthCos = this.chart.Series[1].BorderWidth;
-                settings.LineWidthTan = this.chart.Series[2].BorderWidth;
+                settings.LineWidthFirstfunc = this.chart.Series[0].BorderWidth;
+                settings.LineWidthSecondfunc = this.chart.Series[1].BorderWidth;
+                settings.LineWidthThirdfunc = this.chart.Series[2].BorderWidth;
 
-                settings.ChartTypeSin = Convert.ToString(this.chart.Series[0].ChartType);
-                settings.ChartTypeCos = Convert.ToString(this.chart.Series[1].ChartType);
-                settings.ChartTypeTan = Convert.ToString(this.chart.Series[2].ChartType);
+                settings.ChartTypeFirstfunc = Convert.ToString(this.chart.Series[0].ChartType);
+                settings.ChartTypeSecondfunc = Convert.ToString(this.chart.Series[1].ChartType);
+                settings.ChartTypeThirdfunc = Convert.ToString(this.chart.Series[2].ChartType);
 
                 settings.Save();
             }
@@ -66,17 +67,17 @@ namespace KursovayaV4
         {
             settings = Settings.Load();
 
-            this.chart.Series[0].Color = Color.FromName(settings.ColorOfSin);
-            this.chart.Series[1].Color = Color.FromName(settings.ColorOfCos);
-            this.chart.Series[2].Color = Color.FromName(settings.ColorOfTan);
+            this.chart.Series[0].Color = Color.FromName(settings.ColorOfFirstfunc);
+            this.chart.Series[1].Color = Color.FromName(settings.ColorOfSecondfunc);
+            this.chart.Series[2].Color = Color.FromName(settings.ColorOfThirdfunc);
 
-            this.chart.Series[0].BorderWidth = settings.LineWidthSin;
-            this.chart.Series[1].BorderWidth = settings.LineWidthCos;
-            this.chart.Series[2].BorderWidth = settings.LineWidthTan;
+            this.chart.Series[0].BorderWidth = settings.LineWidthFirstfunc;
+            this.chart.Series[1].BorderWidth = settings.LineWidthSecondfunc;
+            this.chart.Series[2].BorderWidth = settings.LineWidthThirdfunc;
 
-            this.chart.Series[0].ChartType = (SeriesChartType)Enum.Parse(typeof(SeriesChartType), settings.ChartTypeSin);
-            this.chart.Series[1].ChartType = (SeriesChartType)Enum.Parse(typeof(SeriesChartType), settings.ChartTypeCos);
-            this.chart.Series[2].ChartType = (SeriesChartType)Enum.Parse(typeof(SeriesChartType), settings.ChartTypeTan);
+            this.chart.Series[0].ChartType = (SeriesChartType)Enum.Parse(typeof(SeriesChartType), settings.ChartTypeFirstfunc);
+            this.chart.Series[1].ChartType = (SeriesChartType)Enum.Parse(typeof(SeriesChartType), settings.ChartTypeSecondfunc);
+            this.chart.Series[2].ChartType = (SeriesChartType)Enum.Parse(typeof(SeriesChartType), settings.ChartTypeThirdfunc);
 
             textBox_a.Text = Convert.ToString(settings.a);
             textBox_b.Text = Convert.ToString(settings.b);
@@ -88,12 +89,13 @@ namespace KursovayaV4
         private void Form1_Load(object sender, EventArgs e)
         {
             textBox_dataCalc.Text = string.Empty;
-            loadSettings();
+            loadSettings(); //Загружаем последние сохраненные настройки
 
             comboBox_chartType.Items.Add("Point");
             comboBox_chartType.Items.Add("Line");
             comboBox_chartType.Items.Add("Spline");
 
+            //График для предпросмотра
             double g = -10;
             chart_demo.Series[0].Points.Clear();
             while (g <= 10)
@@ -101,6 +103,12 @@ namespace KursovayaV4
                 chart_demo.Series[0].Points.AddXY(g, Math.Sin(g));
                 g += 1;
             }
+
+            integral_methods = checkedListBox_methods.Items.Count;  //Заполняется кол-вом методов из чек листа
+            quant_nodes = checkedListBox_nodes.Items.Count;         //Заполняется кол-вом узлов из чек листа
+            quant_formuls = checkedListBox_funcs.Items.Count;       //Заполняется кол-вом формул из чек листа
+
+            z = new double[quant_nodes, integral_methods + 1, quant_formuls]; //Создание массива для дальнейшего использования
         }
 
         
@@ -113,29 +121,26 @@ namespace KursovayaV4
                 settings.b1 = Convert.ToDouble(textBox_b1.Text);
                 settings.eps= Convert.ToDouble(textBox_epsilon.Text);
 
-                //Рассчет по методу Чебышева по узлам от 2 до 5
                 textBox_dataCalc.Text = string.Empty;
 
-                for (int i = 0; i < quant_formuls; i++)
+                //Идем по списку выделенных методов
+                foreach (int method in checkedListBox_methods.CheckedIndices)
                 {
-                    if (i == 0)
-                        textBox_dataCalc.Text += "=========Для функции _/sin(x)dx===============" + Environment.NewLine +
-                        "n\tChebishev\t\tGauss" + Environment.NewLine;
 
-                    if (i == 1)
-                        textBox_dataCalc.Text += "=========Для функции _/x^3===============" + Environment.NewLine +
-                        "n\tChebishev\t\tGauss" + Environment.NewLine;
+                    textBox_dataCalc.Text += $"========={checkedListBox_methods.Items[method]}===============" + Environment.NewLine;
 
-                    if (i == 2)
-                        textBox_dataCalc.Text += "=========Для функции _/sqrt(x)===============" + Environment.NewLine +
-                        "n\tChebishev\t\tGauss" + Environment.NewLine;
-
-                    for (int j = 0; j < quant_nodes; j++)
+                    //Идем по списку выделенных функций
+                    foreach (int func in checkedListBox_choosedFuncs.CheckedIndices)
                     {
-                        z[j, 0, i] = Functions.chebishev(settings.a1, settings.b1, settings.eps, j, i);
-                        z[j, 1, i] = Functions.gauss(settings.a1, settings.b1, settings.eps, j, i);
+                        textBox_dataCalc.Text += $"Для функции {checkedListBox_funcs.Items[func]}" + Environment.NewLine 
+                            + $"n\ty" + Environment.NewLine;
 
-                        textBox_dataCalc.Text += $"{j+2}\t{z[j, 0, i]}\t{z[j, 1, i]}" + Environment.NewLine;
+                        //Идем по списку выделенных узлов
+                        foreach (int node in checkedListBox_nodes.CheckedIndices)
+                        {
+                            z[node, method, func] = Functions.calc_func(settings.a1, settings.b1, settings.eps, node + 2, func, method);
+                            textBox_dataCalc.Text += $"{node+2}\t{z[node, method, func]}" + Environment.NewLine;
+                        }
                     }
 
                 }
@@ -178,25 +183,24 @@ namespace KursovayaV4
                             $"b= {settings.b1}" + Environment.NewLine +
                             $"eps= {settings.eps}" + Environment.NewLine);
 
-                        for (int i = 0; i < quant_formuls; i++)
+                        //Идем по списку выделенных методов
+                        foreach (int method in checkedListBox_methods.CheckedIndices)
                         {
-                            if (i == 0)
-                                sw.WriteLine("=========Для функции _/sin(x)dx===============" + Environment.NewLine +
-                                "n\tChebishev\t\tGauss" + Environment.NewLine);
 
-                            if (i == 1)
-                                sw.WriteLine("=========Для функции _/x^3===============" + Environment.NewLine +
-                                "n\tChebishev\t\tGauss" + Environment.NewLine);
+                            sw.WriteLine($"========={checkedListBox_methods.Items[method]}===============" + Environment.NewLine);
 
-                            if (i == 2)
-                                sw.WriteLine("=========Для функции _/sqrt(x)===============" + Environment.NewLine +
-                                "n\tChebishev\t\tGauss" + Environment.NewLine);
-
-                            for (int j = 0; j < quant_nodes; j++)
+                            //Идем по списку выделенных функций
+                            foreach (int func in checkedListBox_choosedFuncs.CheckedIndices)
                             {
-                                sw.WriteLine($"{j + 2}\t{z[j, 0, i]}\t{z[j, 1, i]}" + Environment.NewLine);
-                            }
+                                sw.WriteLine($"Для функции {checkedListBox_funcs.Items[func]}" + Environment.NewLine
+                                    + $"n\ty" + Environment.NewLine);
 
+                                //Идем по списку выделенных узлов
+                                foreach (int node in checkedListBox_nodes.CheckedIndices)
+                                {
+                                    sw.WriteLine($"{node + 2}\t{z[node, method, func]}" + Environment.NewLine);
+                                }
+                            }
 
                         }
 
@@ -213,102 +217,10 @@ namespace KursovayaV4
 
 
         //Работа с графиками и меню
-        private void построитьГрафикToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (checkBox_cos.Checked == false && checkBox_sin.Checked == false && checkBox_tan.Checked == false)
-            {
-                MessageBox.Show("Выберите хотя бы один график!", "Внимание!");
-                return;
-            }
-
-            try
-            {
-                settings.a = Convert.ToDouble(textBox_a.Text);
-                settings.b = Convert.ToDouble(textBox_b.Text);
-                settings.h = Convert.ToDouble(textBox_h.Text);
-
-                if (checkBox_sin.Checked)
-                {
-                    x = settings.a;
-                    this.chart.Series[0].Points.Clear();
-
-                    while (x <= settings.b)
-                    {
-                        this.chart.Series[0].Points.AddXY(x, Functions.first_func(x));
-                        x += settings.h;
-                    }
-
-                }
-
-                if (checkBox_cos.Checked)
-                {
-                    x = settings.a;
-                    this.chart.Series[1].Points.Clear();
-
-                    while (x <= settings.b)
-                    {
-                        this.chart.Series[1].Points.AddXY(x, Functions.second_func(x));
-                        x += settings.h;
-                    }
-                }
-
-                if (checkBox_tan.Checked)
-                {
-                    x = settings.a;
-                    this.chart.Series[2].Points.Clear();
-
-                    while (x <= settings.b)
-                    {
-                        this.chart.Series[2].Points.AddXY(x, Functions.third_func(x));
-                        x += settings.h;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Внимание!");
-                MessageBox.Show("Параметры по умолчанию!", "Внимание!");
-
-                settings.a = -10;
-                textBox_a.Text = Convert.ToString(settings.a);
-                settings.b = 10;
-                textBox_b.Text = Convert.ToString(settings.b);
-                settings.h = 0.5;
-                textBox_h.Text = Convert.ToString(settings.h);
-
-            }
-        }
-
-        private void очиститьГрафикToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (checkBox_cos.Checked == false && checkBox_sin.Checked == false && checkBox_tan.Checked == false)
-            {
-                MessageBox.Show("Выберите хотя бы один график!", "Внимание!");
-                return;
-            }
-
-            if (checkBox_sin.Checked)
-            {
-                this.chart.Series[0].Points.Clear();
-            }
-
-            if (checkBox_cos.Checked)
-            {
-                this.chart.Series[1].Points.Clear();
-            }
-
-            if (checkBox_tan.Checked)
-            {
-                this.chart.Series[2].Points.Clear();
-            }
-
-        }
-
         private void сохранитьНастройкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             globalSafe();
         }
-
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Вы уверены, что хотите выйти, данные без сохранения уйдут навечно PoroSad?", "Внимание!", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -321,6 +233,42 @@ namespace KursovayaV4
         private void загрузитьПоследниеНастройкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             loadSettings();
+        }
+        private void checkedListBox_funcs_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (e.NewValue == CheckState.Checked)
+            {
+                try
+                {
+                    settings.a = Convert.ToDouble(textBox_a.Text);
+                    settings.b = Convert.ToDouble(textBox_b.Text);
+                    settings.h = Convert.ToDouble(textBox_h.Text);
+                    x = settings.a;
+                    this.chart.Series[checkedListBox_funcs.SelectedIndex].Points.Clear();
+
+                    while (x <= settings.b)
+                    {
+                        this.chart.Series[checkedListBox_funcs.SelectedIndex].Points.AddXY(x, Functions.graph_func(x, checkedListBox_funcs.SelectedIndex));
+                        x += settings.h;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Внимание!");
+                    MessageBox.Show("Параметры по умолчанию!", "Внимание!");
+
+                    settings.a = -10;
+                    textBox_a.Text = Convert.ToString(settings.a);
+                    settings.b = 10;
+                    textBox_b.Text = Convert.ToString(settings.b);
+                    settings.h = 0.5;
+                    textBox_h.Text = Convert.ToString(settings.h);
+                }
+            }
+            else
+            {
+                this.chart.Series[checkedListBox_funcs.SelectedIndex].Points.Clear();
+            }
         }
 
 
@@ -356,6 +304,7 @@ namespace KursovayaV4
             comboBox_color.SelectedIndex = u;
         }
 
+        
         private void button1_Click(object sender, EventArgs e)
         {
             /*

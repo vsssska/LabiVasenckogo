@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,78 +25,146 @@ namespace KursovayaV4
 
         //Значения коэффициентов ti в квадратурной формуле Чебышева
         static double[] t2c = { -0.577350, 0.577350 };
-        static double[] t3c = { -0.707107, 0, -0.707107 };
+        static double[] t3c = { -0.707107, 0, 0.707107 };
         static double[] t4c = { -0.794654, -0.187592, 0.187592, 0.794654 };
         static double[] t5c = { -0.832498, -0.374541, 0, 0.374541, 0.832498 };
         static double[][] tcheb = { t2c, t3c, t4c, t5c };
 
         //Значчения коэффициентов Аi в квадратурной формуле Чебышева
-        static double[] acheb = { 1, 0.666666, 0.5, 0.275 };
+        static double[] acheb = { 1, 0.666666, 0.5, 0.4 };
 
         //Метод Чебышева
-        public static double chebishev(double a, double b, double eps, int n, int func_index)
+        private static double chebishev(double a, double b, double eps, int node_index, int func_index)
         {
-
+            int array_node_index = node_index - 2; //Получение индекса для массива исходя из кол-ва узлов
             double s = 0;
+            double pastS, va, vb, h, s0;
+            int c = 1;
             double x;
+
             
-            for (int i = 0; i < n; i++)
+            do
             {
+                va = a;
+                h = (b - a) / c;
+                vb = va + h;
+                pastS = s;
+                s = 0;
 
-                x = (a + b) / 2 + (b - a) / 2 * tcheb[n][i];
+                while(va < b)
+                {
+                    s0 = 0;
+                    for (int i = 0; i < node_index; i++)
+                    {
 
-                if(func_index == 0)
-                    s += acheb[n] * first_func(x);
-                if (func_index == 1)
-                    s += acheb[n] * second_func(x);
-                if (func_index == 2)
-                    s += acheb[n] * third_func(x);
-            }
+                        x = (va + vb) / 2 + (vb - va) / 2 * tcheb[array_node_index][i];
 
-            s *= (b - a) / 2;
+                        if (func_index == 0)
+                            s0 += first_func(x);
+                        if (func_index == 1)
+                            s0 += second_func(x);
+                        if (func_index == 2)
+                            s0 += third_func(x);
+                    }
+
+                    s0 *= acheb[array_node_index] * (vb - va) / 2;
+                    s += s0;
+
+                    va += h;
+                    vb = va + h;
+                }
+
+                c++;
+
+            } while(Math.Abs(pastS - s) > eps);
+
 
             return s;
         }
 
         //Метод Гаусса
-        public static double gauss(double a, double b, double eps, int n, int func_index)
+        private static double gauss(double a, double b, double eps, int node_index, int func_index)
         {
             double s = 0;
             double x;
+            double pastS, va, vb, h, s0;
+            int c = 1;
+            int array_node_index = node_index - 2;
 
-            for (int i = 0; i < n; i++)
+            do
             {
-                x = (a + b) / 2 + (b - a) / 2 * tgauss[n][i];
-                
-                if (func_index == 0)
-                    s += agauss[n][i] * first_func(x);
-                if (func_index == 1)
-                    s += agauss[n][i] * second_func(x);
-                if (func_index == 2)
-                    s += agauss[n][i] * third_func(x);
+                va = a;
+                h = (b - a) / c;
+                vb = va + h;
+                pastS = s;
+                s = 0;
 
-            }
+                while (va < b)
+                {
+                    s0 = 0;
+                    for (int i = 0; i < node_index; i++)
+                    {
 
-            s *= (b - a) / 2;
+                        x = (va + vb) / 2 + (vb - va) / 2 * tgauss[array_node_index][i];
+
+                        if (func_index == 0)
+                            s0 += agauss[array_node_index][i] * first_func(x);
+                        if (func_index == 1)
+                            s0 += agauss[array_node_index][i] * second_func(x);
+                        if (func_index == 2)
+                            s0 += agauss[array_node_index][i] * third_func(x);
+                    }
+
+                    s0 *= (vb - va) / 2;
+                    s += s0;
+
+                    va += h;
+                    vb = va + h;
+                }
+                c++;
+
+            } while (Math.Abs(pastS - s) > eps);
 
             return s;
         }
-        
+
 
         //Функции для графиков
-        public static double first_func(double x)
+        private static double first_func(double x)
         {
             return Math.Sin(x);
         }
 
-        public static double second_func(double x)
+        private static double second_func(double x)
         {
             return Math.Pow(x, 3);
         }
 
-        public static double third_func(double x)
+        private static double third_func(double x)
         {
             return Math.Sqrt(x);
+        }
+
+        public static double graph_func(double x, int func_flag)
+        {
+            if (func_flag == 0)
+                return first_func(x);
+            else if (func_flag == 1)
+                return second_func(x);
+            else if (func_flag == 2)
+                return third_func(x);
+            else
+                return 0;
+        }
+
+        public static double calc_func(double a, double b, double eps, int node_index, int func_index, int method_index)
+        {
+            if (method_index == 0)
+                return chebishev(a, b, eps, node_index, func_index);
+            if (method_index == 1)
+                return gauss(a, b, eps, node_index, func_index);
+            else
+                return 0;
         }
     }
 }
