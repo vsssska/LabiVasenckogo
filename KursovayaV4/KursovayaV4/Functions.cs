@@ -8,13 +8,6 @@ namespace KursovayaV4
 {
     internal static class Functions
     {
-        static int Factorial(int n)
-        {
-            if (n == 1) return 1;
-
-            return n * Factorial(n - 1);
-        }
-
         //Значения коэффициентов ti в квадратурной формуле Гаусса
         static double[] t2g = { -0.57735027, 0.57735027 };
         static double[] t3g = { -0.77459667, 0, 0.77459667 };
@@ -102,7 +95,7 @@ namespace KursovayaV4
 
         public static double third_func(double x)
         {
-            return Math.Exp(Math.Pow(x, 3));
+            return Math.Sqrt(x);
         }
     }
 }

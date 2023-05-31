@@ -127,7 +127,7 @@ namespace KursovayaV4
                         "n\tChebishev\t\tGauss" + Environment.NewLine;
 
                     if (i == 2)
-                        textBox_dataCalc.Text += "=========Для функции _/exp(x^3)===============" + Environment.NewLine +
+                        textBox_dataCalc.Text += "=========Для функции _/sqrt(x)===============" + Environment.NewLine +
                         "n\tChebishev\t\tGauss" + Environment.NewLine;
 
                     for (int j = 0; j < quant_nodes; j++)
@@ -189,7 +189,7 @@ namespace KursovayaV4
                                 "n\tChebishev\t\tGauss" + Environment.NewLine);
 
                             if (i == 2)
-                                sw.WriteLine("=========Для функции _/exp(x^3)===============" + Environment.NewLine +
+                                sw.WriteLine("=========Для функции _/sqrt(x)===============" + Environment.NewLine +
                                 "n\tChebishev\t\tGauss" + Environment.NewLine);
 
                             for (int j = 0; j < quant_nodes; j++)
@@ -268,6 +268,7 @@ namespace KursovayaV4
             {
                 MessageBox.Show(ex.Message, "Внимание!");
                 MessageBox.Show("Параметры по умолчанию!", "Внимание!");
+
                 settings.a = -10;
                 textBox_a.Text = Convert.ToString(settings.a);
                 settings.b = 10;
